@@ -30,23 +30,40 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { set
 
 // дальше — только главная: на внутренних страницах этих блоков нет
 if ($('.hero')) {
-/* светофор: красный 3-2 → жёлтый 1 → зелёный с идущим человечком. Нажатие или наведение — повтор */
-const signal = $('.signal'), num = $('.signal__num');
-let timers = [], cycling = false;
-const setLight = (state, n = '') => { signal.dataset.state = state; num.textContent = n; };
-const runSignal = () => {
-  if (cycling) return;
-  cycling = true;
-  timers.forEach(clearTimeout);
-  const plan = calm ? [[0, 'green']] : [[0, 'red', 3], [380, 'red', 2], [760, 'yellow', 1], [1100, 'green']];
-  timers = plan.map(([t, st, n]) => setTimeout(() => { setLight(st, n ?? ''); if (st === 'green') cycling = false; }, t));
+/* светофор: цикл как на перекрёстке. Красный с отсчётом → красный+жёлтый → зелёный с отсчётом,
+   последние 3 секунды зелёный мигает → жёлтый → снова красный. Нажатие включает зелёный. */
+const signal = $('.signal');
+const SEG = { 0: 'abcdef', 1: 'bc', 2: 'abged', 3: 'abgcd', 4: 'fgbc', 5: 'afgcd', 6: 'afgedc', 7: 'abc', 8: 'abcdefg', 9: 'abfgcd' };
+const digits = $$('.signal__timer .seg');
+const showTime = n => digits.forEach((svg, i) => {
+  const d = n == null ? null : String(n).padStart(2, ' ')[i];
+  [...svg.children].forEach((r, j) => r.classList.toggle('on', d != null && d !== ' ' && SEG[d].includes('abcdefg'[j])));
+});
+const PHASE = { red: 6, ry: 2, green: 15, yellow: 3 }; // секунды
+const NEXT = { red: 'ry', ry: 'green', green: 'yellow', yellow: 'red' };
+let phase = 'red', left = 3, tick = 0, running = false;
+const paint = () => {
+  signal.dataset.state = phase;
+  signal.classList.toggle('is-blink', phase === 'green' && left <= 3);
+  showTime(phase === 'red' || phase === 'green' ? left : null);
 };
-runSignal();
-signal.addEventListener('click', runSignal);
-let hoverReplay = 0;
-signal.addEventListener('pointerenter', e => {
-  // наведение мышью тоже переключает, но не чаще раза в 4 секунды
-  if (e.pointerType === 'mouse' && Date.now() - hoverReplay > 4000) { hoverReplay = Date.now(); runSignal(); }
+const step = () => {
+  left--;
+  if (left <= 0) { phase = NEXT[phase]; left = PHASE[phase]; }
+  paint();
+};
+const start = () => { if (running || calm) return; running = true; tick = setInterval(step, 1000); };
+const stop = () => { running = false; clearInterval(tick); };
+if (calm) { phase = 'green'; left = null; signal.dataset.state = 'green'; showTime(null); }
+else {
+  paint();
+  // крутим только когда светофор виден и вкладка активна
+  new IntersectionObserver(([e]) => (e.isIntersecting && !document.hidden ? start() : stop())).observe(signal);
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+}
+signal.addEventListener('click', () => {
+  if (calm || phase === 'green') return;
+  stop(); phase = 'ry'; left = 1; paint(); start();
 });
 // при наведении на главные кнопки зелёный горит ярче
 $$('.hero__cta .btn, .header__cta').forEach(b => {
@@ -62,8 +79,8 @@ if (!calm && matchMedia('(hover: hover) and (pointer: fine)').matches) {
     tx = e.clientX / innerWidth - 0.5; ty = e.clientY / innerHeight - 0.5;
     if (!raf) raf = requestAnimationFrame(() => {
       dots.forEach((d, i) => { const k = (i + 1) * 14; d.style.transform = `translate(${tx * k}px, ${ty * k}px)`; });
-      signal.style.setProperty('--ry', (tx * 14).toFixed(1) + 'deg');
-      signal.style.setProperty('--rx', (-ty * 10).toFixed(1) + 'deg');
+      signal.style.setProperty('--ry', (tx * 10).toFixed(1) + 'deg');
+      signal.style.setProperty('--rx', (-ty * 6).toFixed(1) + 'deg');
       raf = 0;
     });
   });

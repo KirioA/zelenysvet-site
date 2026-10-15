@@ -7,7 +7,7 @@
 <meta name="description" content="Страница не найдена.">
 <meta name="theme-color" content="#F7F8F2">
 <link rel="icon" href="/zelenysvet-site/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/zelenysvet-site/css/style.css?v=4">
+<link rel="stylesheet" href="/zelenysvet-site/css/style.css?v=5">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -40,9 +40,9 @@
 <main id="main">
 <section class="nf">
   <div>
-    <div class="signal" data-state="red" aria-hidden="true">
-      <i class="lamp lamp--r"></i><i class="lamp lamp--y"></i><i class="lamp lamp--g"></i>
-      <span class="signal__screen"><b class="signal__num">404</b></span>
+    <div class="signal" data-state="red" aria-hidden="true" style="cursor:default">
+      <span class="signal__box"><i class="lamp lamp--r"><b></b></i><i class="lamp lamp--y"><b></b></i><i class="lamp lamp--g"><b></b></i></span>
+      <span class="signal__timer" id="nfTimer"><svg class="seg" viewBox="0 0 24 40" aria-hidden="true"><rect x="6" y="1" width="12" height="3" rx="1.5"/><rect x="19" y="5" width="3" height="13" rx="1.5"/><rect x="19" y="22" width="3" height="13" rx="1.5"/><rect x="6" y="36" width="12" height="3" rx="1.5"/><rect x="2" y="22" width="3" height="13" rx="1.5"/><rect x="2" y="5" width="3" height="13" rx="1.5"/><rect x="6" y="18.5" width="12" height="3" rx="1.5"/></svg><svg class="seg" viewBox="0 0 24 40" aria-hidden="true"><rect x="6" y="1" width="12" height="3" rx="1.5"/><rect x="19" y="5" width="3" height="13" rx="1.5"/><rect x="19" y="22" width="3" height="13" rx="1.5"/><rect x="6" y="36" width="12" height="3" rx="1.5"/><rect x="2" y="22" width="3" height="13" rx="1.5"/><rect x="2" y="5" width="3" height="13" rx="1.5"/><rect x="6" y="18.5" width="12" height="3" rx="1.5"/></svg><svg class="seg" viewBox="0 0 24 40" aria-hidden="true"><rect x="6" y="1" width="12" height="3" rx="1.5"/><rect x="19" y="5" width="3" height="13" rx="1.5"/><rect x="19" y="22" width="3" height="13" rx="1.5"/><rect x="6" y="36" width="12" height="3" rx="1.5"/><rect x="2" y="22" width="3" height="13" rx="1.5"/><rect x="2" y="5" width="3" height="13" rx="1.5"/><rect x="6" y="18.5" width="12" height="3" rx="1.5"/></svg></span>
     </div>
     <h1 style="font-size:clamp(32px,5vw,56px)">Такой страницы нет</h1>
     <p>Возможно, ссылка устарела или в адресе опечатка. Главная — по зелёному.</p>
@@ -58,6 +58,7 @@
     <p class="footer__copy">© 2026 Зелёный свет · <a href="/zelenysvet-site/works/">Работы</a> · <a href="/zelenysvet-site/privacy.html">Политика обработки персональных данных</a></p>
   </div>
 </footer>
-<script src="/zelenysvet-site/js/main.js?v=3" defer></script>
+<script src="/zelenysvet-site/js/main.js?v=4" defer></script>
+<script>(()=>{const M={0:"abcdef",4:"fgbc"};document.querySelectorAll("#nfTimer .seg").forEach((sv,i)=>{const d="404"[i];[...sv.children].forEach((r,j)=>{if(M[d].includes("abcdefg"[j]))r.classList.add("on")})})})()</script>
 </body>
 </html>

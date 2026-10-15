@@ -56,12 +56,18 @@ a { color: inherit; }
 .lookup { padding: 24px; border-radius: 18px; background: rgba(18, 21, 25, .78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, .15); }
 .lookup h2 { font-size: 22px; }
 .lookup p { margin-top: 6px; color: #C3C8CE; font-size: 15px; }
-.plate { display: flex; align-items: stretch; margin-top: 16px; border: 3px solid #111; border-radius: 10px; background: #fff; overflow: hidden; }
-.plate__flag { width: 40px; flex: none; background: linear-gradient(#C8102E 0 66%, #23702F 66%); display: grid; place-items: end center; padding-bottom: 4px; color: #fff; font: 400 12px Russo, sans-serif; }
-.plate input { flex: 1; min-width: 0; border: 0; padding: 0 14px; min-height: 58px; font: 400 26px Russo, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #111; }
-.plate input::placeholder { color: #6B7178; }
+/* белорусский регистрационный знак: белый с тиснением, чёрная окантовка, слева флаг с орнаментом и зелёное BY (с 2020) */
+@font-face { font-family: Plate; src: url(../../fonts/plate-latin.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+.plate { position: relative; display: flex; align-items: center; margin-top: 16px; aspect-ratio: 520 / 112; padding: 1.2% 2.4% 1.2% 1.6%; border-radius: 1.6cqw; background: linear-gradient(175deg, #FFFFFF 0%, #F1F3F4 55%, #E4E7EA 100%); box-shadow: inset 0 0 0 .55cqw #111, inset 0 0 0 .95cqw #F7F8F9, 0 3px 0 #0A0B0C, 0 8px 18px rgba(0, 0, 0, .35); container-type: inline-size; overflow: hidden; }
+.plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(115deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, .55) 45%, rgba(255, 255, 255, 0) 60%); pointer-events: none; mix-blend-mode: soft-light; }
+.plate__side { flex: none; width: 15cqw; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 2.2cqw 0 1.6cqw; }
+.plate__flag { width: 12cqw; height: 6cqw; display: block; box-shadow: 0 0 0 .15cqw rgba(0, 0, 0, .15); }
+.plate__by { font: 600 11.5cqw/.8 Plate, "Arial Narrow", sans-serif; color: #2FB24C; letter-spacing: .02em; }
+.plate input { flex: 1; min-width: 0; height: 100%; border: 0; padding: 0 0 0 1.5%; background: transparent; font: 600 19.5cqw/1 Plate, "Arial Narrow", sans-serif; letter-spacing: .045em; text-transform: uppercase; color: #121314; text-shadow: 0 .25cqw 0 rgba(255, 255, 255, .9), 0 -.2cqw 0 rgba(0, 0, 0, .28); caret-color: #C8102E; }
+.plate input::placeholder { color: #8A9097; text-shadow: none; }
 .plate input:focus { outline: none; }
-.plate:focus-within { box-shadow: 0 0 0 3px var(--yellow); }
+.plate:focus-within { box-shadow: inset 0 0 0 .55cqw #111, inset 0 0 0 .95cqw #F7F8F9, 0 3px 0 #0A0B0C, 0 0 0 3px var(--yellow); }
+.plate-hint { margin-top: 8px; font-size: 13px; color: #9AA1A9; }
 .lookup .btn { width: 100%; margin-top: 12px; }
 .stripes { height: 14px; background: repeating-linear-gradient(-45deg, var(--yellow) 0 18px, var(--ink) 18px 36px); }
 @media (prefers-reduced-motion: no-preference) { .stripes { background-size: 51px 100%; animation: roll 2.4s linear infinite; } }
@@ -92,7 +98,7 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 .status[hidden] { display: none; }
 .status { display: grid; grid-template-columns: 1fr 1.3fr; gap: 28px; align-items: start; }
 .car { padding: 24px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
-.car h3 { font-size: 26px; }
+.car h3 { font: 600 34px/1 Plate, "Arial Narrow", sans-serif; letter-spacing: .03em; }
 .car p { margin-top: 8px; color: var(--muted); }
 .car .eta { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: var(--concrete); font-weight: 700; color: var(--ink); }
 .car__master { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
@@ -221,7 +227,6 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 @media (max-width: 620px) {
   .services, .team, .reviews, .works, .facts, .guarantee { grid-template-columns: 1fr; }
   .hero__cta .btn { flex: 1 1 100%; }
-  .plate input { font-size: 22px; }
 }
 @media (max-width: 380px) { .brand { font-size: 19px; gap: 8px; } .brand b { width: 36px; height: 36px; font-size: 15px; } .nav { gap: 12px; } .nav .tel { font-size: 14px; } }
 </style>
@@ -243,8 +248,9 @@ section { padding-block: clamp(64px, 9vw, 112px); }
     </div>
     <form class="lookup" id="lookup" novalidate>
       <h2>Где моя машина?</h2>
-      <p>Введите госномер или номер заказа — покажем, на каком этапе ремонт.</p>
-      <label class="plate"><span class="plate__flag" aria-hidden="true">BY</span><input name="q" placeholder="1234 AB-7" maxlength="10" aria-label="Госномер или номер заказа" autocomplete="off"></label>
+      <p>Введите госномер — покажем, на каком этапе ремонт.</p>
+      <label class="plate"><span class="plate__side" aria-hidden="true"><svg class="plate__flag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#C8102E"/><rect y="20" width="60" height="10" fill="#007C30"/><rect width="7" height="30" fill="#fff"/><g fill="#C8102E"><path d="M3.5 1 6 4 3.5 7 1 4z"/><path d="M3.5 8.5 6 11.5 3.5 14.5 1 11.5z"/><path d="M3.5 16 6 19 3.5 22 1 19z"/><path d="M3.5 23.5 6 26.5 3.5 29.5 1 26.5z"/></g><g fill="#fff"><circle cx="3.5" cy="4" r=".7"/><circle cx="3.5" cy="11.5" r=".7"/><circle cx="3.5" cy="19" r=".7"/><circle cx="3.5" cy="26.5" r=".7"/></g></svg><b class="plate__by">BY</b></span><input name="q" placeholder="1234 AB-7" maxlength="9" aria-label="Госномер, например 1234 AB-7" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></label>
+      <p class="plate-hint">Можно печатать русскими буквами — исправим сами.</p>
       <button class="btn" type="submit">Показать статус</button>
     </form>
   </div>
@@ -569,9 +575,23 @@ function renderStatus() {
     ol.append(li);
   });
 }
+/* маска знака: 4 цифры, 2 буквы из 12 разрешённых, код региона. Кириллица → латинские двойники */
+const CYR = { 'А': 'A', 'В': 'B', 'Е': 'E', 'І': 'I', 'И': 'I', 'К': 'K', 'М': 'M', 'Н': 'H', 'О': 'O', 'Р': 'P', 'С': 'C', 'Т': 'T', 'Х': 'X' };
+const LETTERS = 'ABEIKMHOPCTX';
+const formatPlate = raw => {
+  let d = '', l = '', r = '';
+  for (const ch of raw.toUpperCase()) {
+    const c = CYR[ch] || ch;
+    if (/\d/.test(c)) { if (l.length === 0 && d.length < 4) d += c; else if (l.length === 2 && !r) r = c; }
+    else if (LETTERS.includes(c) && d.length === 4 && l.length < 2) l += c;
+  }
+  return d + (l ? ' ' + l : d.length === 4 && /\s|[A-ZА-Я]/i.test(raw.slice(-1)) ? ' ' : '') + (r ? '-' + r : l.length === 2 && /-$/.test(raw) ? '-' : '');
+};
+const plateInput = $('#lookup input');
+plateInput.addEventListener('input', () => { plateInput.value = formatPlate(plateInput.value); });
 $('#lookup').addEventListener('submit', e => {
   e.preventDefault();
-  plate = e.target.q.value.trim().toUpperCase() || '1234 AB-7';
+  plate = /^\d{4} [A-Z]{2}-\d$/.test(e.target.q.value) ? e.target.q.value : '1234 AB-7';
   stage = 2; $('#status').hidden = false; renderStatus();
   if (window.ScrollTrigger) ScrollTrigger.refresh();
   const y = $('#status').getBoundingClientRect().top + scrollY - 60;

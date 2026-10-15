@@ -13,7 +13,7 @@
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=5">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -63,12 +63,10 @@
         <a class="btn btn--ghost" href="#price">Посчитать стоимость</a>
       </div>
     </div>
-    <button class="signal" type="button" aria-label="Светофор. Нажмите, чтобы переключить ещё раз">
-      <i class="lamp lamp--r"></i><i class="lamp lamp--y"></i><i class="lamp lamp--g"></i>
-      <span class="signal__screen" aria-hidden="true">
-        <b class="signal__num"></b>
-        <svg class="walker" viewBox="0 0 22 28"><g class="w1"><circle cx="11" cy="4" r="3" stroke="none"/><path d="M11 9v8M11 11l-5 4M11 11l5 3M11 17l-5 9M11 17l5 9" fill="none"/></g><g class="w2"><circle cx="11" cy="4" r="3" stroke="none"/><path d="M11 9v8M11 11l-3 5M11 11l3 5M11 17l-2 9M11 17l2 9" fill="none"/></g></svg>
-      </span>
+    <button class="signal" type="button" aria-label="Светофор. Нажмите, чтобы включить зелёный">
+      <span class="signal__box"><i class="lamp lamp--r"><b></b></i><i class="lamp lamp--y"><b></b></i><i class="lamp lamp--g"><b></b></i></span>
+      <span class="signal__timer" aria-hidden="true"><svg class="seg" viewBox="0 0 24 40" aria-hidden="true"><rect x="6" y="1" width="12" height="3" rx="1.5"/><rect x="19" y="5" width="3" height="13" rx="1.5"/><rect x="19" y="22" width="3" height="13" rx="1.5"/><rect x="6" y="36" width="12" height="3" rx="1.5"/><rect x="2" y="22" width="3" height="13" rx="1.5"/><rect x="2" y="5" width="3" height="13" rx="1.5"/><rect x="6" y="18.5" width="12" height="3" rx="1.5"/></svg><svg class="seg" viewBox="0 0 24 40" aria-hidden="true"><rect x="6" y="1" width="12" height="3" rx="1.5"/><rect x="19" y="5" width="3" height="13" rx="1.5"/><rect x="19" y="22" width="3" height="13" rx="1.5"/><rect x="6" y="36" width="12" height="3" rx="1.5"/><rect x="2" y="22" width="3" height="13" rx="1.5"/><rect x="2" y="5" width="3" height="13" rx="1.5"/><rect x="6" y="18.5" width="12" height="3" rx="1.5"/></svg></span>
+      <span class="signal__hint">Нажмите — дадим зелёный</span>
     </button>
   </div>
   <ul class="wrap facts">
@@ -299,6 +297,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=3" defer></script>
+<script src="js/main.js?v=4" defer></script>
 </body>
 </html>
