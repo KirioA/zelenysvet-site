@@ -33,12 +33,8 @@ if ($('.hero')) {
 /* светофор: цикл как на перекрёстке. Красный с отсчётом → красный+жёлтый → зелёный с отсчётом,
    последние 3 секунды зелёный мигает → жёлтый → снова красный. Нажатие включает зелёный. */
 const signal = $('.signal');
-const SEG = { 0: 'abcdef', 1: 'bc', 2: 'abged', 3: 'abgcd', 4: 'fgbc', 5: 'afgcd', 6: 'afgedc', 7: 'abc', 8: 'abcdefg', 9: 'abfgcd' };
-const digits = $$('.signal__timer .seg');
-const showTime = n => digits.forEach((svg, i) => {
-  const d = n == null ? null : String(n).padStart(2, ' ')[i];
-  [...svg.children].forEach((r, j) => r.classList.toggle('on', d != null && d !== ' ' && SEG[d].includes('abcdefg'[j])));
-});
+const timer = $('.signal__timer');
+const showTime = n => { timer.textContent = n == null ? '' : n; };
 const PHASE = { red: 6, ry: 2, green: 15, yellow: 3 }; // секунды
 const NEXT = { red: 'ry', ry: 'green', green: 'yellow', yellow: 'red' };
 let phase = 'red', left = 3, tick = 0, running = false;
