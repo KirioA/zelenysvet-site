@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Барбершоп «Чуб» — демо-сайт студии «Зелёный свет»</title>
+<meta name="description" content="Демо-сайт барбершопа: онлайн-запись к мастеру со свободными окнами и напоминанием. Сделано студией «Зелёный свет».">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../css/demo-frame.css?v=3">
+<style>
+@font-face { font-family: Oswald; src: url(../../fonts/oswald-cyrillic.woff2) format("woff2"); font-weight: 200 700; font-display: swap; unicode-range: U+0400-045F, U+2116; }
+@font-face { font-family: Oswald; src: url(../../fonts/oswald-latin.woff2) format("woff2"); font-weight: 200 700; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: Manrope; src: url(../../fonts/manrope-cyrillic.woff2) format("woff2"); font-weight: 200 800; font-display: swap; unicode-range: U+0400-045F, U+2116; }
+@font-face { font-family: Manrope; src: url(../../fonts/manrope-latin.woff2) format("woff2"); font-weight: 200 800; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F; }
+:root { --bone: #F5F5F2; --navy: #1B2A4A; --red: #C8323C; --steel: #8A94A6; --line: #D9DCE2; --card: #FFFFFF; --muted: #4F5B70; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body { margin: 0; background: var(--bone); color: var(--navy); font: 400 17px/1.55 Manrope, system-ui, sans-serif; }
+h1, h2, h3 { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 600; margin: 0; line-height: 1; letter-spacing: .01em; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border: 0; border-radius: 4px; background: var(--red); color: #fff; font: 600 18px Oswald, sans-serif; letter-spacing: .04em; text-decoration: none; cursor: pointer; transition: background .2s, transform .15s; }
+.btn:hover { background: #AE2730; }
+.btn:active { transform: scale(.98); }
+.btn--ghost { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.btn--ghost:hover { background: var(--navy); color: #fff; }
+
+.top { display: flex; align-items: center; justify-content: space-between; padding-block: 18px; }
+.brand { font: 700 34px Oswald, sans-serif; letter-spacing: .06em; text-decoration: none; color: inherit; }
+.top a.tel { font-weight: 700; color: inherit; text-decoration: none; padding: 10px 0; }
+
+/* hero: полоса-вывеска барбершопа крутится как настоящая */
+.hero { display: grid; grid-template-columns: 1.3fr auto; gap: 48px; align-items: center; padding-block: clamp(24px, 5vw, 56px) clamp(56px, 8vw, 96px); }
+.hero h1 { font-size: clamp(56px, 9vw, 128px); text-transform: uppercase; }
+.hero p { margin-top: 20px; max-width: 36ch; font-size: clamp(18px, 1.6vw, 20px); color: var(--muted); }
+.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+.pole { width: clamp(64px, 8vw, 96px); height: clamp(260px, 34vw, 400px); border-radius: 48px; padding: 10px; background: var(--navy); box-shadow: inset 0 0 0 4px #2B3D63; }
+.pole__glass { height: 100%; border-radius: 40px; background: repeating-linear-gradient(-45deg, var(--red) 0 18px, #fff 18px 36px, var(--navy) 36px 54px, #fff 54px 72px); background-size: 100% 204px; box-shadow: inset 8px 0 14px rgba(255, 255, 255, .5), inset -8px 0 14px rgba(0, 0, 0, .25); }
+@media (prefers-reduced-motion: no-preference) { .pole__glass { animation: spin 3s linear infinite; } }
+@keyframes spin { to { background-position: 0 204px; } }
+
+section { padding: clamp(56px, 8vw, 96px) 0; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; }
+.sec-head h2 { font-size: clamp(40px, 5.6vw, 68px); text-transform: uppercase; }
+.sec-head p { color: var(--muted); max-width: 40ch; }
+
+.price { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--navy); }
+.price li { display: grid; grid-template-columns: 1fr auto auto; gap: 8px 28px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.price b { font: 600 24px Oswald, sans-serif; letter-spacing: .02em; }
+.price small { grid-column: 1; color: var(--muted); font-size: 15px; }
+.price em { font-style: normal; color: var(--muted); font-size: 15px; white-space: nowrap; grid-row: 1; grid-column: 2; }
+.price strong { font: 600 24px Oswald, sans-serif; grid-row: 1; grid-column: 3; white-space: nowrap; }
+
+.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.master { padding: 24px; border-radius: 6px; background: var(--card); border: 1px solid var(--line); }
+.master__ava { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: #fff; font: 600 28px Oswald, sans-serif; margin-bottom: 16px; }
+.master h3 { font-size: 28px; }
+.master p { margin-top: 6px; color: var(--muted); font-size: 15px; }
+.master .tag { display: inline-block; margin-top: 12px; padding: 6px 12px; border-radius: 4px; background: var(--bone); font-size: 14px; font-weight: 700; }
+
+/* запись */
+#book { background: var(--navy); color: #fff; }
+#book .sec-head p { color: #C3CADB; }
+.wizard { display: grid; grid-template-columns: 240px 1fr; gap: 32px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; align-content: start; counter-reset: s; }
+.steps li { display: flex; align-items: center; gap: 12px; padding: 12px 0; color: #8C97B0; font-weight: 600; }
+.steps li::before { counter-increment: s; content: counter(s); width: 32px; height: 32px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 1px solid #44567D; font: 600 16px Oswald, sans-serif; }
+.steps li.on { color: #fff; }
+.steps li.on::before { background: var(--red); border-color: var(--red); }
+.steps li.done { color: #C3CADB; }
+.steps li.done::before { content: "✓"; background: #2B3D63; }
+.steps small { display: block; font-weight: 400; color: #C3CADB; font-size: 14px; }
+.wizard > * { min-width: 0; }
+.stage { min-height: 360px; padding: clamp(20px, 3vw, 32px); border-radius: 6px; background: #22355C; }
+.stage h3 { font-size: 30px; text-transform: uppercase; margin-bottom: 18px; }
+.opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.opt { display: flex; flex-direction: column; gap: 2px; min-height: 64px; padding: 14px 16px; border-radius: 6px; border: 1px solid #44567D; background: transparent; text-align: left; cursor: pointer; transition: border-color .2s, background .2s; }
+.opt:hover { border-color: #fff; }
+.opt b { font-size: 17px; }
+.opt small { color: #C3CADB; font-size: 14px; }
+.opt[aria-pressed="true"] { background: #fff; color: var(--navy); border-color: #fff; }
+.opt[aria-pressed="true"] small { color: var(--muted); }
+.days { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; scrollbar-width: thin; }
+.day { flex: none; width: 72px; min-height: 64px; border-radius: 6px; border: 1px solid #44567D; background: transparent; cursor: pointer; line-height: 1.2; }
+.day small { display: block; color: #C3CADB; font-size: 13px; }
+.day b { font: 600 22px Oswald, sans-serif; }
+.day[aria-pressed="true"] { background: #fff; color: var(--navy); }
+.day[aria-pressed="true"] small { color: var(--muted); }
+.day:disabled { opacity: .4; cursor: not-allowed; }
+.times { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 8px; }
+.time { min-height: 46px; border-radius: 6px; border: 1px solid #44567D; background: transparent; font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer; }
+.time:hover:not(:disabled) { border-color: #fff; }
+.time:disabled { color: #6A7A9C; text-decoration: line-through; border-style: dashed; cursor: not-allowed; }
+.time[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
+.hint { margin-top: 14px; color: #C3CADB; font-size: 15px; }
+.field { display: grid; gap: 6px; margin-bottom: 14px; font-size: 15px; font-weight: 700; }
+.field input { min-height: 52px; padding: 0 14px; border-radius: 6px; border: 1px solid #44567D; background: #1B2A4A; color: #fff; font: 400 17px Manrope, sans-serif; }
+.field input::placeholder { color: #8C97B0; }
+.field input:focus { outline: none; border-color: #fff; }
+.summary { padding: 16px; border-radius: 6px; background: #1B2A4A; margin-bottom: 18px; }
+.summary p + p { margin-top: 4px; }
+.err { color: #FF9AA0; font-size: 15px; margin: 0 0 12px; }
+.err:empty { display: none; }
+.nav { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+.nav .btn--ghost { color: #fff; border-color: #44567D; }
+.nav .btn--ghost:hover { background: #2B3D63; }
+.ok h3 { color: #fff; }
+.ok p { color: #C3CADB; margin-top: 8px; }
+
+.place { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.place b { display: block; font: 600 24px Oswald, sans-serif; text-transform: uppercase; margin-bottom: 6px; }
+.place p, .place a { color: var(--muted); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .pole { display: none; }
+  .team { grid-template-columns: 1fr; }
+  .wizard { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(4, 1fr); }
+  .steps li { flex-direction: column; text-align: center; gap: 6px; font-size: 13px; padding: 0; }
+  .steps small { display: none; }
+}
+@media (max-width: 600px) {
+  .place { grid-template-columns: 1fr; }
+  .price li { grid-template-columns: 1fr auto; }
+  .price em { grid-row: 2; grid-column: 2; text-align: right; }
+  .price strong { grid-row: 1; grid-column: 2; text-align: right; }
+  .hero__cta .btn { flex: 1 1 100%; }
+  .nav .btn { flex: 1 1 100%; }
+}
+</style>
+</head>
+<body data-demo="barber" data-demo-name="Барбершоп «Чуб»" data-service="Сайт компании">
+
+<div class="wrap top">
+  <a class="brand" href="#">ЧУБ</a>
+  <a class="tel" href="tel:+375290000000">+375 29 000-00-00</a>
+</div>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <h1>Стрижка без очереди</h1>
+      <p>Выберите мастера и время онлайн — свободные окна видно сразу. Накануне напомним в Telegram.</p>
+      <div class="hero__cta"><a class="btn" href="#book">Записаться</a><a class="btn btn--ghost" href="#price">Цены</a></div>
+    </div>
+    <div class="pole" aria-hidden="true"><div class="pole__glass"></div></div>
+  </div>
+
+  <section id="price">
+    <div class="wrap">
+      <div class="sec-head"><h2>Цены</h2><p>Цена не зависит от мастера. Мытьё головы и укладка входят во все стрижки.</p></div>
+      <ul class="price" id="priceList"></ul>
+    </div>
+  </section>
+
+  <section id="team" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2>Мастера</h2><p>Три мастера, каждый со своей сильной стороной.</p></div>
+      <div class="team" id="teamList"></div>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap">
+      <div class="sec-head"><h2>Запись</h2><p>Четыре шага, около минуты. Перечёркнутое время уже занято.</p></div>
+      <div class="wizard">
+        <ol class="steps" id="steps">
+          <li><span>Услуга<small id="sumSvc"></small></span></li>
+          <li><span>Мастер<small id="sumMaster"></small></span></li>
+          <li><span>Время<small id="sumTime"></small></span></li>
+          <li><span>Контакты</span></li>
+        </ol>
+        <div class="stage" id="stage" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap place">
+      <div><b>Адрес</b><p>Минск, ул. Стальная, 7. Вход со двора, вывеска с полосатым столбом.</p></div>
+      <div><b>Часы</b><p>Каждый день 10:00–21:00</p></div>
+      <div><b>Телефон</b><p><a href="tel:+375290000000">+375 29 000-00-00</a></p></div>
+    </div>
+  </section>
+</main>
+
+<script src="../../js/demo-frame.js?v=3"></script>
+<script>
+const SERVICES = [
+  { id: 'cut', name: 'Мужская стрижка', about: 'Машинка и ножницы, мытьё, укладка', min: 60, price: 40 },
+  { id: 'fade', name: 'Фейд', about: 'Плавный переход от кожи, чёткий контур', min: 60, price: 45 },
+  { id: 'beard', name: 'Борода', about: 'Форма, контур бритвой, горячее полотенце', min: 30, price: 30 },
+  { id: 'combo', name: 'Стрижка и борода', about: 'Полный образ за один визит', min: 90, price: 65 },
+  { id: 'shave', name: 'Королевское бритьё', about: 'Опасная бритва и горячие полотенца', min: 30, price: 40 },
+  { id: 'kid', name: 'Детская стрижка', about: 'Для мальчиков до 12 лет', min: 30, price: 28 },
+];
+const MASTERS = [
+  { id: 'ilya', name: 'Илья', role: 'старший мастер', about: 'Фейды и сложные переходы. 9 лет в профессии.', tag: 'Фейды' },
+  { id: 'artem', name: 'Артём', role: 'мастер по бороде', about: 'Борода, бритьё и чёткий контур.', tag: 'Борода' },
+  { id: 'max', name: 'Максим', role: 'мастер', about: 'Классика и ножницы. Любит длинные стрижки.', tag: 'Классика' },
+];
+const OPEN = 10 * 60, CLOSE = 21 * 60, STEP = 30;
+const CLIENTS = ['Денис', 'Олег', 'Павел', 'Игорь', 'Кирилл', 'Антон', 'Сергей', 'Никита'];
+const $ = s => document.querySelector(s);
+const hhmm = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+const durText = m => m < 60 ? `${m} мин` : m % 60 ? `${Math.floor(m / 60)} ч ${m % 60} мин` : `${m / 60} ч`;
+const WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+const MON = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+const dayKey = d => d.toISOString().slice(0, 10);
+const dayLabel = d => `${WD[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`;
+
+/* занятость — одна для слотов и для расписания мастера, поэтому они всегда совпадают */
+const hash = s => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; };
+const busy = {}; // `${master}|${day}` → Map(startMin → client)
+function busyOf(master, day) {
+  const k = master + '|' + day;
+  if (!busy[k]) {
+    busy[k] = new Map();
+    for (let m = OPEN; m < CLOSE; m += STEP) if (hash(k + m) < 0.28) busy[k].set(m, CLIENTS[Math.floor(hash(k + 'c' + m) * CLIENTS.length)]);
+  }
+  return busy[k];
+}
+const nowMin = () => { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); };
+function freeFor(master, day, start, dur, isToday) {
+  if (start + dur > CLOSE) return false;
+  if (isToday && start < nowMin() + 30) return false; // запись не раньше чем через 30 минут
+  const b = busyOf(master, day);
+  for (let m = start; m < start + dur; m += STEP) if (b.has(m)) return false;
+  return true;
+}
+
+/* цены и мастера */
+SERVICES.forEach(s => {
+  const li = document.createElement('li');
+  li.innerHTML = '<b></b><em></em><strong></strong><small></small>';
+  li.querySelector('b').textContent = s.name; li.querySelector('small').textContent = s.about;
+  li.querySelector('em').textContent = durText(s.min); li.querySelector('strong').textContent = s.price + ' BYN';
+  $('#priceList').append(li);
+});
+MASTERS.forEach(m => {
+  const el = document.createElement('article'); el.className = 'master';
+  el.innerHTML = '<div class="master__ava"></div><h3></h3><p></p><span class="tag"></span>';
+  el.querySelector('.master__ava').textContent = m.name[0];
+  el.querySelector('h3').textContent = m.name;
+  el.querySelector('p').textContent = `${m.role[0].toUpperCase() + m.role.slice(1)}. ${m.about}`;
+  el.querySelector('.tag').textContent = m.tag;
+  $('#teamList').append(el);
+});
+
+/* мастер записи */
+const state = { step: 0, svc: null, master: null, day: null, time: null, who: null };
+const days = [...Array(7)].map((_, i) => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + i); return d; });
+const stage = $('#stage');
+const btn = (cls, html, on) => { const b = document.createElement('button'); b.type = 'button'; b.className = cls; b.innerHTML = html; b.addEventListener('click', on); return b; };
+const h3 = t => { const h = document.createElement('h3'); h.textContent = t; return h; };
+const navRow = (back, next, nextLabel = 'Дальше', disabled = false) => {
+  const n = document.createElement('div'); n.className = 'nav';
+  if (back) n.append(btn('btn btn--ghost', 'Назад', back));
+  if (next) { const b = btn('btn', nextLabel, next); b.disabled = disabled; if (disabled) b.style.opacity = '.5'; n.append(b); }
+  return n;
+};
+function syncSteps() {
+  [...$('#steps').children].forEach((li, i) => { li.className = i === state.step ? 'on' : i < state.step ? 'done' : ''; });
+  $('#sumSvc').textContent = state.svc ? state.svc.name : '';
+  $('#sumMaster').textContent = state.master ? (state.master === 'any' ? 'любой свободный' : state.master.name) : '';
+  $('#sumTime').textContent = state.time != null ? `${dayLabel(state.day)}, ${hhmm(state.time)}` : '';
+}
+function render() {
+  syncSteps(); stage.innerHTML = '';
+  if (state.step === 0) {
+    stage.append(h3('Что делаем'));
+    const g = document.createElement('div'); g.className = 'opts';
+    SERVICES.forEach(s => {
+      const b = btn('opt', `<b></b><small></small>`, () => { state.svc = s; state.time = null; state.step = 1; render(); });
+      b.querySelector('b').textContent = s.name; b.querySelector('small').textContent = `${durText(s.min)} · ${s.price} BYN`;
+      b.setAttribute('aria-pressed', state.svc === s); g.append(b);
+    });
+    stage.append(g);
+  }
+  if (state.step === 1) {
+    stage.append(h3('К кому'));
+    const g = document.createElement('div'); g.className = 'opts';
+    [...MASTERS, 'any'].forEach(m => {
+      const b = btn('opt', '<b></b><small></small>', () => { state.master = m; state.time = null; state.step = 2; render(); });
+      b.querySelector('b').textContent = m === 'any' ? 'Любой свободный' : m.name;
+      b.querySelector('small').textContent = m === 'any' ? 'покажем все свободные окна' : m.role;
+      b.setAttribute('aria-pressed', state.master === m); g.append(b);
+    });
+    stage.append(g, navRow(() => { state.step = 0; render(); }));
+  }
+  if (state.step === 2) {
+    stage.append(h3('Когда'));
+    const ms = state.master === 'any' ? MASTERS : [state.master];
+    const freeAt = (d, m, isToday) => ms.find(x => freeFor(x.id, dayKey(d), m, state.svc.min, isToday));
+    const dayFree = (d, i) => { for (let m = OPEN; m < CLOSE; m += STEP) if (freeAt(d, m, i === 0)) return true; return false; };
+    if (!state.day || !dayFree(state.day, days.indexOf(state.day))) state.day = days.find(dayFree);
+    const dr = document.createElement('div'); dr.className = 'days';
+    days.forEach((d, i) => {
+      const b = btn('day', `<small>${i === 0 ? 'сегодня' : i === 1 ? 'завтра' : WD[d.getDay()]}</small><b>${d.getDate()}</b>`, () => { state.day = d; state.time = null; render(); });
+      b.setAttribute('aria-pressed', d === state.day); b.disabled = !dayFree(d, i);
+      b.setAttribute('aria-label', dayLabel(d)); dr.append(b);
+    });
+    stage.append(dr);
+    const tg = document.createElement('div'); tg.className = 'times';
+    const isToday = state.day === days[0]; let free = 0;
+    for (let m = OPEN; m + state.svc.min <= CLOSE; m += STEP) {
+      const who = freeAt(state.day, m, isToday);
+      const b = btn('time', hhmm(m), () => { state.time = m; state.who = who; render(); });
+      b.disabled = !who; if (who) free++;
+      b.setAttribute('aria-pressed', state.time === m); tg.append(b);
+    }
+    const hint = document.createElement('p'); hint.className = 'hint';
+    hint.textContent = `Свободно ${free} ${free % 10 === 1 && free % 100 !== 11 ? 'окно' : [2, 3, 4].includes(free % 10) && ![12, 13, 14].includes(free % 100) ? 'окна' : 'окон'}. ${state.svc.name} занимает ${durText(state.svc.min)}.`;
+    stage.append(tg, hint, navRow(() => { state.step = 1; render(); }, () => { state.step = 3; render(); }, 'Дальше', state.time == null));
+  }
+  if (state.step === 3) {
+    stage.append(h3('Контакты'));
+    const sum = document.createElement('div'); sum.className = 'summary';
+    [`${state.svc.name}, ${state.svc.price} BYN`, `Мастер: ${state.who.name}`, `${dayLabel(state.day)}, ${hhmm(state.time)}–${hhmm(state.time + state.svc.min)}`].forEach(t => { const p = document.createElement('p'); p.textContent = t; sum.append(p); });
+    const f = document.createElement('form'); f.noValidate = true;
+    f.innerHTML = `<label class="field">Имя<input name="name" autocomplete="given-name" maxlength="30"></label>
+      <label class="field">Телефон или Telegram<input name="contact" autocomplete="tel" placeholder="+375 29 123-45-67" maxlength="40"></label>
+      <p class="err" role="alert"></p>`;
+    f.append(navRow(() => { state.step = 2; render(); }, null));
+    const sub = document.createElement('button'); sub.className = 'btn'; sub.type = 'submit'; sub.textContent = 'Записаться';
+    f.querySelector('.nav').append(sub);
+    f.addEventListener('submit', e => {
+      e.preventDefault();
+      const c = f.contact.value.trim(), digits = c.replace(/\D/g, '');
+      const ok = /^@?[a-zA-Z]\w{4,31}$/.test(c) || (digits.length >= 9 && digits.length <= 15);
+      if (!ok) { f.querySelector('.err').textContent = 'Укажите телефон или ник в Telegram — туда придёт напоминание.'; f.contact.focus(); return; }
+      done(f.name.value.trim() || 'Гость', c);
+    });
+    stage.append(sum, f);
+  }
+}
+function done(name, contact) {
+  const { svc, who, day, time } = state;
+  const b = busyOf(who.id, dayKey(day));
+  for (let m = time; m < time + svc.min; m += STEP) b.set(m, null); // окно теперь занято
+  b.set(time, name + ' · новая');
+  state.step = 4; syncSteps(); [...$('#steps').children].forEach(li => li.className = 'done');
+  stage.innerHTML = '';
+  const ok = document.createElement('div'); ok.className = 'ok';
+  ok.append(h3('Вы записаны'));
+  [`${svc.name} у мастера ${who.name}, ${dayLabel(day)} в ${hhmm(time)}.`, 'Накануне в 19:00 пришлём напоминание. Если планы изменятся — просто ответьте на него.'].forEach(t => { const p = document.createElement('p'); p.textContent = t; ok.append(p); });
+  ok.append(navRow(null, () => { Object.assign(state, { step: 0, svc: null, master: null, day: null, time: null }); render(); }, 'Записать ещё'));
+  stage.append(ok);
+  // расписание мастера на этот день — из тех же данных, что и слоты
+  // соседние получасовые блоки одного клиента — одна запись «с–по»
+  const blocks = [...b.entries()].sort((a, c) => a[0] - c[0]), sched = [];
+  for (const [m, c] of blocks) {
+    const last = sched[sched.length - 1];
+    if (last && last.end === m && (c === null || c === last.who)) { last.end = m + STEP; continue; }
+    sched.push({ start: m, end: m + STEP, who: c });
+  }
+  const lines = sched.map(x => `${hhmm(x.start)}–${hhmm(x.end)} — ${x.who}`);
+  zsOwner('Чуб · запись', [
+    [`Новая запись: ${svc.name}`, [`${dayLabel(day)}, ${hhmm(time)}–${hhmm(time + svc.min)}`, `Мастер: ${who.name}`, `${name}, ${contact}`]],
+    [`Расписание: ${who.name}, ${dayLabel(day)}`, lines],
+  ]);
+}
+render();
+</script>
+</body>
+</html>

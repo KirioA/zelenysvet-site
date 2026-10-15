@@ -28,6 +28,8 @@ burger.addEventListener('click', () => setMenu(menu.hidden));
 menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { setMenu(false); burger.focus(); } });
 
+// дальше — только главная: на внутренних страницах этих блоков нет
+if ($('.hero')) {
 /* светофор: красный 3-2 → жёлтый 1 → зелёный с идущим человечком. Нажатие или наведение — повтор */
 const signal = $('.signal'), num = $('.signal__num');
 let timers = [], cycling = false;
@@ -191,6 +193,7 @@ lead.addEventListener('submit', async e => {
     name: lead.name.value.trim(), contact: v,
     service: lead.service.value || '', task: lead.task.value.trim(),
     page: location.pathname, utm: location.search,
+    from: new URLSearchParams(location.search).get('from') || '',
   };
   const btn = $('button[type="submit"]', lead);
   btn.disabled = true; btn.textContent = 'Отправляем…';
@@ -206,3 +209,4 @@ lead.addEventListener('submit', async e => {
     btn.disabled = false; btn.textContent = 'Отправить заявку';
   }
 });
+}

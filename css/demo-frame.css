@@ -1,0 +1,35 @@
+/* Рамка демо-сайта: своя полоса сверху, подпись снизу, панель «так увидит владелец». Стили демо её не трогают. */
+@font-face { font-family: ZsManrope; src: url(../fonts/manrope-cyrillic.woff2) format("woff2"); font-weight: 200 800; font-display: swap; unicode-range: U+0400-045F; }
+@font-face { font-family: ZsManrope; src: url(../fonts/manrope-latin.woff2) format("woff2"); font-weight: 200 800; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F; }
+
+.zs-bar { position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 6px max(16px, env(safe-area-inset-left)); background: #F7F8F2; color: #16261B; border-bottom: 1px solid #D5DDCB; font: 500 14px/1.2 ZsManrope, system-ui, sans-serif; }
+.zs-bar a { color: inherit; text-decoration: none; }
+.zs-bar__back { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 4px; }
+.zs-bar__back::before { content: ""; width: 8px; height: 8px; border: solid currentColor; border-width: 0 0 2px 2px; transform: rotate(45deg); margin-right: 2px; }
+.zs-bar__label { margin: 0 auto; display: inline-flex; align-items: center; gap: 8px; color: #4E5E52; }
+.zs-bar__label i { width: 12px; height: 12px; border-radius: 50%; background: #A6D86B; box-shadow: 0 0 0 3px #E9F5DA; }
+.zs-bar__cta { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; background: #16261B; color: #F7F8F2 !important; font-weight: 600; white-space: nowrap; }
+.zs-bar__cta:hover { background: #23382A; }
+.zs-bar :focus-visible, .zs-owner :focus-visible { outline: 3px solid #A6D86B; outline-offset: 2px; border-radius: 8px; }
+@media (max-width: 640px) { .zs-bar__label span { display: none; } .zs-bar__label { margin: 0 auto 0 0; } }
+@media (max-width: 360px) { .zs-bar__back span { display: none; } }
+
+.zs-foot { padding: 28px 20px 36px; text-align: center; background: #F7F8F2; color: #4E5E52; font: 400 14px/1.6 ZsManrope, system-ui, sans-serif; border-top: 1px solid #D5DDCB; }
+.zs-foot a { color: #16261B; font-weight: 600; }
+
+/* панель «так увидит владелец» */
+.zs-owner { position: fixed; z-index: 1100; right: 16px; bottom: 16px; width: min(380px, calc(100vw - 32px)); max-height: calc(100dvh - 100px); overflow: auto; padding: 18px; border-radius: 22px; background: #16261B; color: #F7F8F2; box-shadow: 0 20px 50px rgba(22, 38, 27, .35); font: 400 15px/1.45 ZsManrope, system-ui, sans-serif; }
+.zs-owner[hidden] { display: none; }
+.zs-owner__head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.zs-owner__head b { font-size: 15px; }
+.zs-owner__head small { display: block; color: #B9C6BC; font-size: 13px; }
+.zs-owner__ico { flex: none; width: 34px; height: 34px; border-radius: 50%; background: #A6D86B; box-shadow: 0 0 0 4px rgba(233, 245, 218, .2); }
+.zs-owner__close { margin-left: auto; flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #3A5242; background: transparent; color: #F7F8F2; font-size: 20px; line-height: 1; cursor: pointer; }
+.zs-owner__msg { padding: 12px 14px; border-radius: 16px 16px 16px 6px; background: #F7F8F2; color: #16261B; }
+.zs-owner__msg + .zs-owner__msg { margin-top: 8px; }
+.zs-owner__msg p { margin: 0; }
+.zs-owner__msg b { display: block; margin-bottom: 4px; }
+.zs-owner__note { margin: 12px 0 0; font-size: 13px; color: #B9C6BC; }
+.zs-owner__note a { color: #A6D86B; font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) { .zs-owner:not([hidden]) { animation: zsIn .45s cubic-bezier(.2, .9, .3, 1.1) both; } }
+@keyframes zsIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }

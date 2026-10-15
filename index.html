@@ -13,7 +13,7 @@
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=4">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -125,7 +125,16 @@
       </article>
     </div>
 
-    <p class="soon">Скоро здесь появятся демо-сайты для кофейни, барбершопа и автосервиса — с рабочей записью и заявками. Понравится демо — сделаем такой же под ваш бизнес.</p>
+    <div class="demos-head">
+      <h3>Демо-сайты для разных ниш</h3>
+      <p>Бизнесы вымышленные, а запись, заказы и заявки в них работают по-настоящему. Понравится — сделаем такой же под вас.</p>
+    </div>
+    <div class="demos">
+      <a class="demo-card" href="demo/kofe/"><img src="img/demo-kofe.jpg" alt="Демо-сайт кофейни «Утро»" width="1440" height="900" loading="lazy"><b>Кофейня «Утро»</b><span>Меню, заказ с собой ко времени, карта «седьмой кофе в подарок»</span></a>
+      <a class="demo-card" href="demo/barber/"><img src="img/demo-barber.jpg" alt="Демо-сайт барбершопа «Чуб»" width="1440" height="900" loading="lazy"><b>Барбершоп «Чуб»</b><span>Онлайн-запись к мастеру: свободные окна и напоминание накануне</span></a>
+      <a class="demo-card" href="demo/avto/"><img src="img/demo-avto.jpg" alt="Демо-сайт автосервиса «Ключ 13»" width="1440" height="900" loading="lazy"><b>Автосервис «Ключ 13»</b><span>Расчёт ремонта, запись и статус машины с согласованием сметы</span></a>
+    </div>
+    <p class="works-more"><a class="link" href="works/">Все работы</a></p>
   </div>
 </section>
 
@@ -270,6 +279,7 @@
         <input type="checkbox" name="consent">
         <span>Даю согласие на обработку персональных данных, чтобы со мной связались по заявке</span>
       </label>
+      <p class="consent-note">Какие данные и сколько храним — в <a href="privacy.html">политике обработки персональных данных</a>.</p>
       <em class="field__err" id="consentErr" role="alert"></em>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn btn--dark" type="submit">Отправить заявку</button>
@@ -285,10 +295,10 @@
     <a class="logo" href="#top"><i></i><b>Зелёный свет</b></a>
     <p>Сайты для малого бизнеса Беларуси</p>
     <p class="footer__links"><a href="tel:+375445900578">+375 44 590-05-78</a><a href="https://t.me/wherewherewheree">Telegram</a><a href="mailto:zelenysvetby@mail.ru">Почта</a></p>
-    <p class="footer__copy">© 2026 Зелёный свет</p>
+    <p class="footer__copy">© 2026 Зелёный свет · <a href="works/">Работы</a> · <a href="privacy.html">Политика обработки персональных данных</a></p>
   </div>
 </footer>
 
-<script src="js/main.js?v=2" defer></script>
+<script src="js/main.js?v=3" defer></script>
 </body>
 </html>
