@@ -4,124 +4,199 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Кофейня «Утро» — демо-сайт студии «Зелёный свет»</title>
-<meta name="description" content="Демо-сайт кофейни: меню, предзаказ ко времени и карта лояльности. Сделано студией «Зелёный свет».">
+<meta name="description" content="Демо-сайт кофейни: меню с ценами, заказ с собой ко времени, зерно недели и карта гостя. Сделано студией «Зелёный свет».">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/demo-frame.css?v=3">
+<link rel="preload" as="image" href="img/hero-video-milk-pour-poster.jpg">
+<link rel="stylesheet" href="../../css/demo-frame.css?v=4">
 <style>
 @font-face { font-family: Lora; src: url(../../fonts/lora-cyrillic.woff2) format("woff2"); font-weight: 400 700; font-display: swap; unicode-range: U+0400-045F, U+2116; }
 @font-face { font-family: Lora; src: url(../../fonts/lora-latin.woff2) format("woff2"); font-weight: 400 700; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F; }
 @font-face { font-family: Manrope; src: url(../../fonts/manrope-cyrillic.woff2) format("woff2"); font-weight: 200 800; font-display: swap; unicode-range: U+0400-045F, U+2116; }
 @font-face { font-family: Manrope; src: url(../../fonts/manrope-latin.woff2) format("woff2"); font-weight: 200 800; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F; }
-:root { --sky: #EEF3F6; --sun: #FF8A3D; --sun-2: #FFD7B8; --ink: #24170F; --muted: #6A5A50; --card: #FFFFFF; --line: #D8E0E5; }
+:root { --paper: #FBF7F2; --sun: #FF8A3D; --sun-2: #FFE2CC; --ink: #24170F; --muted: #6E5D52; --card: #FFFFFF; --line: #EADFD5; --dark: #1B120C; }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 70px; }
-body { margin: 0; background: var(--sky); color: var(--ink); font: 400 17px/1.55 Manrope, system-ui, sans-serif; }
-h1, h2, h3 { font-family: Lora, Georgia, serif; font-weight: 600; margin: 0; line-height: 1.1; }
+html { scroll-padding-top: 70px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.6 Manrope, system-ui, sans-serif; }
+h1, h2, h3 { font-family: Lora, Georgia, serif; font-weight: 600; margin: 0; line-height: 1.08; }
 p { margin: 0; }
+img, video { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; }
+a { color: inherit; }
 :focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 8px; }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border-radius: 16px; border: 0; background: var(--ink); color: #fff; font-weight: 700; text-decoration: none; cursor: pointer; transition: transform .15s, background .2s; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: clamp(20px, 4vw, 40px); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 0; background: var(--ink); color: #fff; font-weight: 700; text-decoration: none; cursor: pointer; transition: transform .15s, background .2s; }
 .btn:hover { background: #3A2618; }
 .btn:active { transform: scale(.98); }
 .btn--sun { background: var(--sun); color: var(--ink); }
 .btn--sun:hover { background: #FF9D5C; }
+.btn--glass { background: rgba(255, 255, 255, .14); color: #fff; border: 1px solid rgba(255, 255, 255, .45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.btn--glass:hover { background: rgba(255, 255, 255, .26); }
+.eyebrow { font-weight: 700; color: #A8461A; font-size: 15px; margin-bottom: 14px; }
+.bean .eyebrow { color: var(--sun); }
 
-/* шапка кофейни */
-.top { display: flex; align-items: center; justify-content: space-between; padding-block: 18px; }
-.brand { display: flex; align-items: center; gap: 10px; font: 600 26px Lora, serif; text-decoration: none; color: inherit; }
+/* первый экран: видео наливания молока */
+.hero { position: relative; min-height: min(100svh, 900px); display: flex; flex-direction: column; color: #fff; overflow: hidden; background: var(--dark); }
+.hero__media { position: absolute; inset: 0; }
+.hero > .wrap { width: 100%; } /* во flex-колонке margin:auto иначе сжимает блок по содержимому */
+.hero__media img, .hero__media video { width: 100%; height: 100%; object-fit: cover; }
+.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(27, 18, 12, .82) 0%, rgba(27, 18, 12, .45) 55%, rgba(27, 18, 12, .1) 100%), linear-gradient(0deg, rgba(27, 18, 12, .6), transparent 40%); }
+.nav { position: relative; z-index: 2; display: flex; align-items: center; gap: 28px; padding-block: 20px; }
+.brand { display: flex; align-items: center; gap: 10px; font: 600 28px Lora, serif; text-decoration: none; }
 .brand i { width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 50% 120%, var(--sun) 0 55%, transparent 56%), var(--sun-2); }
-.open { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; }
-.open::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #3FA34D; }
-.open.is-closed::before { background: #B3402E; }
+.nav__links { display: flex; gap: 24px; margin-left: auto; font-weight: 600; font-size: 15px; }
+.nav__links a { text-decoration: none; opacity: .9; padding: 8px 0; }
+.nav__links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.nav .btn { min-height: 44px; padding: 0 20px; }
+.hero__body { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: center; padding-block: 40px 56px; }
+.status { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 8px 14px; border-radius: 999px; background: rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 15px; font-weight: 600; }
+.status::before { content: ""; flex: none; width: 9px; height: 9px; border-radius: 50%; background: #5BD16B; box-shadow: 0 0 0 4px rgba(91, 209, 107, .25); }
+.status.is-closed::before { background: #FF7A6B; box-shadow: 0 0 0 4px rgba(255, 122, 107, .25); }
+.hero h1 { margin-top: 22px; font-size: clamp(42px, 7vw, 92px); max-width: 12ch; letter-spacing: -0.01em; }
+.hero__lead { margin-top: 22px; max-width: 40ch; font-size: clamp(18px, 1.6vw, 20px); color: rgba(255, 255, 255, .86); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero__foot { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 14px 32px; align-items: center; padding-block: 0 28px; font-size: 15px; color: rgba(255, 255, 255, .85); }
+.rating { display: inline-flex; align-items: center; gap: 10px; }
+.rating b { font: 600 26px Lora, serif; color: #fff; }
+.stars { color: #FFC24B; letter-spacing: 2px; }
+.cups b { font: 600 26px Lora, serif; color: #fff; font-variant-numeric: tabular-nums; }
 
-/* hero: солнце встаёт над чашкой */
-.hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; padding-block: clamp(24px, 5vw, 64px) clamp(48px, 8vw, 96px); }
-.hero h1 { font-size: clamp(42px, 6.4vw, 80px); letter-spacing: -0.02em; }
-.hero h1 em { font-style: italic; font-weight: 500; }
-.hero p { margin-top: 20px; max-width: 34ch; font-size: clamp(18px, 1.6vw, 20px); color: var(--muted); }
-.hero .btn { margin-top: 32px; }
-.sunrise-wrap { position: relative; justify-self: center; width: 100%; max-width: 440px; }
-.sunrise { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; background: linear-gradient(#FFF 0 50%, var(--sun-2) 50%); overflow: hidden; }
-.sunrise__sun { position: absolute; left: 50%; bottom: 50%; width: 46%; aspect-ratio: 1; margin-left: -23%; border-radius: 50%; background: var(--sun); transform: translateY(40%); }
-.sunrise__cup { position: absolute; left: 50%; bottom: 14%; width: 52%; height: 34%; margin-left: -26%; border-radius: 0 0 46% 46% / 0 0 70% 70%; background: var(--ink); }
-.sunrise__cup::after { content: ""; position: absolute; right: -16%; top: 16%; width: 26%; height: 44%; border: 10px solid var(--ink); border-left: 0; border-radius: 0 50% 50% 0; }
-.sunrise__ticket { position: absolute; left: -4%; top: 12%; padding: 10px 14px; border-radius: 12px; background: #fff; box-shadow: 0 8px 20px rgba(36, 23, 15, .12); font-size: 14px; font-weight: 600; }
-.sunrise__ticket small { display: block; color: var(--muted); font-weight: 400; font-size: 13px; }
-@media (prefers-reduced-motion: no-preference) {
-  .sunrise__sun { animation: rise 2.2s cubic-bezier(.2, .8, .2, 1) both .2s; }
-  .sunrise__ticket { animation: drop .6s cubic-bezier(.2, .9, .3, 1.2) both 1.6s; }
-}
-@keyframes rise { from { transform: translateY(110%); } }
-@keyframes drop { from { opacity: 0; transform: translateY(-12px); } }
+/* бегущая строка */
+.ticker { overflow: hidden; background: var(--sun); color: var(--ink); font-weight: 700; }
+.ticker__track { display: flex; width: max-content; gap: 48px; padding: 14px 0; }
+.ticker span::before { content: "☕"; margin-right: 12px; }
+@media (prefers-reduced-motion: no-preference) { .ticker__track { animation: tick 38s linear infinite; } }
+@keyframes tick { to { transform: translateX(-50%); } }
 
-section { padding: clamp(56px, 8vw, 96px) 0; }
-.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; }
-.sec-head h2 { font-size: clamp(32px, 4.4vw, 52px); }
-.sec-head p { color: var(--muted); max-width: 40ch; }
+section { padding-block: clamp(64px, 9vw, 120px); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 20px 48px; flex-wrap: wrap; margin-bottom: 36px; }
+.sec-head h2 { font-size: clamp(34px, 4.6vw, 56px); }
+.sec-head p { color: var(--muted); max-width: 42ch; }
+
+/* история */
+.story { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+.story__media { position: relative; }
+.story__main { border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 5; }
+.story__main img { width: 100%; height: 115%; object-fit: cover; }
+.story__float { position: absolute; right: -6%; bottom: -8%; width: 42%; border-radius: 20px; overflow: hidden; border: 6px solid var(--paper); box-shadow: 0 20px 40px rgba(36, 23, 15, .18); }
+.story__float img { aspect-ratio: 1; object-fit: cover; }
+.story h2 { font-size: clamp(32px, 4.2vw, 52px); }
+.story p { margin-top: 18px; color: var(--muted); max-width: 46ch; }
+.story .eyebrow { margin-top: 0; }
+.story .lead { margin-top: 22px; font-size: 19px; color: var(--ink); }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--line); }
+.facts b { display: block; font: 600 34px Lora, serif; }
+.facts span { color: var(--muted); font-size: 15px; }
+
+/* зерно недели */
+.bean { position: relative; color: #fff; overflow: hidden; background: var(--dark); }
+.bean__bg { position: absolute; inset: -12% 0; }
+.bean__bg img { width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+.bean .wrap { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.bean h2 { font-size: clamp(34px, 4.6vw, 56px); }
+.bean__card { padding: 28px; border-radius: 24px; background: rgba(27, 18, 12, .72); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, .15); }
+.bean__card h3 { font-size: 30px; }
+.bean__card p { margin-top: 8px; color: rgba(255, 255, 255, .8); }
+.notes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.notes span { padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, .12); font-size: 15px; font-weight: 600; }
+.roast { margin-top: 22px; }
+.roast small { color: rgba(255, 255, 255, .75); font-size: 14px; }
+.roast__bar { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin-top: 8px; }
+.roast__bar i { height: 8px; border-radius: 4px; background: rgba(255, 255, 255, .2); }
+.roast__bar i.on { background: var(--sun); }
+.bean__side p { margin-top: 16px; color: rgba(255, 255, 255, .85); max-width: 40ch; }
 
 /* меню */
-.menu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.drink { display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); }
+.menu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.drink { display: flex; flex-direction: column; border-radius: 22px; background: var(--card); overflow: hidden; border: 1px solid var(--line); }
+.drink__img { aspect-ratio: 4 / 3; overflow: hidden; }
+.drink__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.drink:hover .drink__img img { transform: scale(1.05); }
+.drink__body { display: flex; flex-direction: column; gap: 8px; padding: 20px; flex: 1; }
 .drink h3 { font-size: 24px; }
 .drink p { color: var(--muted); font-size: 15px; flex: 1; }
 .drink__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; }
-.sizes { display: inline-flex; padding: 3px; border-radius: 12px; background: var(--sky); }
-.sizes button { min-height: 40px; min-width: 52px; padding: 0 10px; border: 0; border-radius: 9px; background: transparent; font-size: 14px; font-weight: 600; cursor: pointer; }
+.sizes { display: inline-flex; padding: 3px; border-radius: 12px; background: var(--paper); }
+.sizes button { min-height: 40px; min-width: 64px; padding: 0 10px; border: 0; border-radius: 9px; background: transparent; font-size: 14px; font-weight: 600; cursor: pointer; }
 .sizes button[aria-pressed="true"] { background: #fff; box-shadow: 0 1px 3px rgba(36, 23, 15, .15); }
-.price { font: 600 20px Lora, serif; white-space: nowrap; }
-.add { min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1.5px solid var(--ink); background: transparent; font-weight: 700; cursor: pointer; }
+.sizes span { padding: 8px 10px; font-size: 14px; font-weight: 600; }
+.price { font: 600 22px Lora, serif; white-space: nowrap; }
+.add { min-height: 46px; margin-top: 6px; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
 .add:hover { background: var(--ink); color: #fff; }
-.add.is-added { background: var(--sun); border-color: var(--sun); }
+.add.is-added { background: var(--sun); border-color: var(--sun); color: var(--ink); }
+.milk { margin-top: 22px; color: var(--muted); font-size: 15px; }
+.pastry { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.pastry .drink { flex-direction: row; }
+.pastry .drink__img { aspect-ratio: auto; width: 40%; flex: none; }
 
 /* заказ */
+.order-sec { background: #fff; }
 .order { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-.panel { padding: clamp(22px, 3vw, 32px); border-radius: 24px; background: var(--card); border: 1px solid var(--line); }
-.panel h3 { font-size: 24px; margin-bottom: 16px; }
+.panel { padding: clamp(22px, 3vw, 32px); border-radius: 24px; background: var(--paper); border: 1px solid var(--line); }
+.panel h3 { font-size: 26px; margin-bottom: 16px; }
 .cart { list-style: none; margin: 0; padding: 0; }
 .cart li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
-.cart li span { flex: 1; }
+.cart li > span:first-child { flex: 1; }
 .cart li small { color: var(--muted); }
-.qty { display: inline-flex; align-items: center; gap: 4px; }
-.qty button { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--line); background: var(--sky); font-weight: 700; cursor: pointer; }
+.qty { display: inline-flex; align-items: center; gap: 6px; }
+.qty button { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: #fff; font-weight: 700; cursor: pointer; }
 .cart__empty { padding: 20px 0; color: var(--muted); }
-.total { display: flex; justify-content: space-between; margin-top: 16px; font: 600 22px Lora, serif; }
-.label { display: block; margin: 20px 0 10px; font-size: 15px; font-weight: 700; }
+.total { display: flex; justify-content: space-between; margin-top: 16px; font: 600 24px Lora, serif; }
+.label { margin: 20px 0 10px; font-size: 15px; font-weight: 700; }
 .slots { display: flex; flex-wrap: wrap; gap: 8px; }
 .slots label { position: relative; }
 .slots input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-.slots span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--sky); font-weight: 600; font-variant-numeric: tabular-nums; }
+.slots span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line); background: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
 .slots input:checked + span { background: var(--ink); color: #fff; border-color: var(--ink); }
 .slots input:focus-visible + span { outline: 3px solid var(--sun); outline-offset: 2px; }
 .field { display: grid; gap: 6px; margin-top: 14px; font-size: 15px; font-weight: 700; }
 .field input { min-height: 50px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); font: 400 17px Manrope, sans-serif; background: #fff; }
 .field input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px var(--sun-2); }
-.err { min-height: 0; margin-top: 8px; color: #B3402E; font-size: 14px; }
+.err { margin-top: 8px; color: #B3402E; font-size: 14px; }
 .err:empty { display: none; }
 .order .btn { width: 100%; margin-top: 20px; }
 .done { text-align: center; }
-.done[hidden] { display: none; }
+.done[hidden], #formBody[hidden] { display: none; }
 .done h3 { font-size: 30px; }
 .done p { margin-top: 10px; color: var(--muted); }
 .done .btn { margin-top: 20px; }
-
-/* карта лояльности */
-.loyal { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: center; }
-.loyal h2 { font-size: clamp(32px, 4.4vw, 52px); }
-.loyal p { margin-top: 14px; color: var(--muted); max-width: 38ch; }
-.stamps { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; padding: 24px; border-radius: 24px; background: var(--ink); }
-.stamp { aspect-ratio: 1; border-radius: 50%; border: 2px dashed #6A5A50; display: grid; place-items: center; color: var(--ink); font-weight: 800; font-size: 14px; }
+.loyal { margin-top: 24px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; padding: 20px; border-radius: 20px; background: var(--ink); color: #fff; }
+.loyal h3 { font-size: 20px; margin: 0; }
+.loyal p { font-size: 14px; color: #EFE6DF; margin-top: 4px; }
+.stamps { display: grid; grid-template-columns: repeat(7, 28px); gap: 6px; }
+.stamp { width: 28px; height: 28px; border-radius: 50%; border: 2px dashed #8A776A; display: grid; place-items: center; font-size: 13px; }
 .stamp.on { border: 0; background: var(--sun); }
 .stamp.gift { border-color: var(--sun); color: var(--sun); }
 @media (prefers-reduced-motion: no-preference) { .stamp.new { animation: stampIn .5s cubic-bezier(.2, .9, .3, 1.4) both; } }
 @keyframes stampIn { from { transform: scale(1.8) rotate(-20deg); opacity: 0; } }
-.stamps__cap { grid-column: 1 / -1; color: #F5EDE6; font-size: 15px; margin-top: 4px; }
 
-.place { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.place b { display: block; font: 600 22px Lora, serif; margin-bottom: 6px; }
-.place p { color: var(--muted); }
-.place a { color: var(--ink); font-weight: 700; }
+/* отзывы */
+.reviews { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.reviews__photo { border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 5; }
+.reviews__photo img { width: 100%; height: 100%; object-fit: cover; }
+.reviews h2 { font-size: clamp(30px, 4vw, 48px); }
+.score { display: flex; align-items: center; gap: 16px; margin: 18px 0 28px; }
+.score b { font: 600 56px/1 Lora, serif; }
+.score small { display: block; color: var(--muted); }
+.quote { padding: 20px 0; border-top: 1px solid var(--line); }
+.quote p { font-size: 18px; }
+.quote span { display: block; margin-top: 8px; color: var(--muted); font-size: 15px; }
+
+/* инстаграм */
+.insta { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.insta a { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 14px; }
+.insta img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.insta a:hover img { transform: scale(1.06); }
+
+/* как найти */
+.place { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.place__photo { border-radius: 26px; overflow: hidden; aspect-ratio: 16 / 11; }
+.place__photo img { width: 100%; height: 100%; object-fit: cover; }
+.place h2 { font-size: clamp(32px, 4vw, 48px); }
+.place dl { margin: 24px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 20px; }
+.place dt { color: var(--muted); }
+.place dd { margin: 0; font-weight: 600; }
+.place .hint { margin-top: 20px; padding: 14px 16px; border-radius: 14px; background: var(--sun-2); font-size: 15px; }
 
 /* мобильная плашка корзины */
 .dock { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 900; display: none; align-items: center; gap: 12px; padding: 10px 10px 10px 18px; border-radius: 18px; background: var(--ink); color: #fff; box-shadow: 0 10px 30px rgba(36, 23, 15, .3); }
@@ -129,159 +204,286 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
 .dock span { flex: 1; font-weight: 600; }
 .dock .btn { min-height: 44px; padding: 0 18px; }
 
-@media (max-width: 900px) {
-  .hero, .order, .loyal { grid-template-columns: 1fr; }
-  .sunrise-wrap { max-width: 320px; }
-  .sunrise__ticket { left: 0; }
+@media (max-width: 960px) {
+  .nav__links { display: none; }
+  .nav .btn { margin-left: auto; }
+  .story, .bean .wrap, .order, .reviews, .place { grid-template-columns: 1fr; }
   .menu { grid-template-columns: 1fr 1fr; }
+  .insta { grid-template-columns: repeat(3, 1fr); }
+  .story__float { right: 4%; }
+  .reviews__photo { aspect-ratio: 16 / 10; }
 }
-@media (max-width: 600px) {
-  .menu, .place { grid-template-columns: 1fr; }
-  .hero .btn { width: 100%; }
-  .stamps { gap: 6px; padding: 18px; }
-  .stamp { font-size: 12px; }
+@media (max-width: 620px) {
+  .menu, .pastry { grid-template-columns: 1fr; }
+  .hero__cta .btn { flex: 1 1 100%; }
+  .nav .btn { padding: 0 16px; font-size: 15px; }
+  .facts { gap: 12px; }
+  .facts b { font-size: 26px; }
+  .loyal { grid-template-columns: 1fr; }
+  .stamps { grid-template-columns: repeat(7, 1fr); }
+  .stamp { width: auto; height: auto; aspect-ratio: 1; }
   body.has-cart .zs-foot { padding-bottom: 100px; }
 }
-@media (min-width: 601px) { .dock { display: none !important; } }
+@media (min-width: 621px) { .dock { display: none !important; } }
 </style>
 </head>
 <body data-demo="kofe" data-demo-name="Кофейня «Утро»" data-service="Сайт компании">
 
-<div class="wrap top">
-  <a class="brand" href="#"><i></i>Утро</a>
-  <span class="open" id="open">Открыто</span>
-</div>
+<header class="hero" data-hero>
+  <div class="hero__media" aria-hidden="true">
+    <img class="kenburns" id="heroPoster" src="img/hero-video-milk-pour-poster.jpg" alt="">
+  </div>
+  <div class="wrap nav">
+    <a class="brand" href="#"><i></i>Утро</a>
+    <nav class="nav__links" aria-label="Разделы"><a href="#menu">Меню</a><a href="#bean">Зерно недели</a><a href="#reviews">Отзывы</a><a href="#place">Как найти</a></nav>
+    <a class="btn btn--sun" href="#order">Заказать</a>
+  </div>
+  <div class="wrap hero__body">
+    <span class="status" id="status">Открыто</span>
+    <h1 class="words">Кофе, ради которого стоит проснуться</h1>
+    <p class="hero__lead">Спешелти-кофейня на Кальварийской. Закажите на сайте к нужному времени — стакан будет ждать на стойке, без очереди.</p>
+    <div class="hero__cta"><a class="btn btn--sun" href="#order">Заказать к своему времени</a><a class="btn btn--glass" href="#menu">Смотреть меню</a></div>
+  </div>
+  <div class="wrap hero__foot">
+    <span class="rating"><b>4,9</b><span><span class="stars" aria-hidden="true">★★★★★</span><br>312 отзывов на Яндекс Картах</span></span>
+    <span class="cups">Сегодня сварили <b id="cups">0</b> чашек</span>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="ticker__track" id="ticker"></div></div>
 
 <main>
-  <div class="wrap hero">
-    <div>
-      <h1>Кофе готов <em>к вашему приходу</em></h1>
-      <p>Закажите онлайн и выберите время. Заберёте у стойки без очереди — стакан уже будет ждать.</p>
-      <a class="btn btn--sun" href="#menu">Выбрать кофе</a>
+  <section>
+    <div class="wrap story">
+      <div class="story__media">
+        <div class="story__main wipe"><img src="img/interior-hall.jpg" alt="Светлый зал кофейни с венскими стульями" loading="lazy" data-speed="0.6"></div>
+        <div class="story__float" data-speed="-1.2"><img src="img/hands-cup-table.jpg" alt="Капучино с сердцем на деревянном столе" loading="lazy"></div>
+      </div>
+      <div>
+        <p class="eyebrow">С 2019 года на Кальварийской</p>
+        <h2 class="words">Утро — потому что первый кофе решает весь день</h2>
+        <p class="lead">Открылись с одной кофемашиной и шестью столиками. Сейчас нас узнают по запаху круассанов из печи в 7:40.</p>
+        <p>Зерно обжаривают для нас каждый понедельник в Минске. Молоко — коровье, овсяное или кокосовое, без доплаты. Можно с ноутбуком: розетки у окна, Wi-Fi без пароля.</p>
+        <div class="facts">
+          <div><b data-count="2019">2019</b><span>открылись</span></div>
+          <div><b data-count="7">7</b><span>сортов зерна за сезон</span></div>
+          <div><b data-count="5">5</b><span>минут от метро</span></div>
+        </div>
+      </div>
     </div>
-    <div class="sunrise-wrap" aria-hidden="true">
-      <div class="sunrise"><div class="sunrise__sun"></div><div class="sunrise__cup"></div></div>
-      <div class="sunrise__ticket">Капучино 0,4<small>готов к 08:40</small></div>
+  </section>
+
+  <section class="bean" id="bean">
+    <div class="bean__bg" data-speed="1.5" aria-hidden="true"><img src="img/beans-roaster.jpg" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <div class="bean__side">
+        <p class="eyebrow">Зерно недели</p>
+        <h2 class="words">Обжарили в понедельник — пьём до воскресенья</h2>
+        <p>Каждую неделю — новый лот для фильтра и эспрессо. Спросите бариста: расскажет про ферму и подскажет, как заварить дома. Пачка 250 г — 32 BYN.</p>
+      </div>
+      <div class="bean__card rise">
+        <h3>Эфиопия, Иргачефе</h3>
+        <p>Мытая обработка · 1900–2200 м · обжарили 12 октября</p>
+        <div class="notes"><span>жасмин</span><span>бергамот</span><span>персик</span><span>мёд</span></div>
+        <div class="roast"><small>Обжарка 3 из 10 — светлая, для фильтра и эспрессо</small><div class="roast__bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section id="menu">
     <div class="wrap">
-      <div class="sec-head"><h2>Меню</h2><p>Обжариваем зерно каждую неделю. Молоко можно заменить на овсяное без доплаты.</p></div>
+      <div class="sec-head"><h2 class="words">Меню</h2><p>Сироп, дополнительный шот и альтернативное молоко — без доплаты. Есть кофе без кофеина.</p></div>
       <div class="menu" id="menuList"></div>
+      <div class="pastry" id="pastryList"></div>
+      <p class="milk">Молоко: коровье 3,2%, овсяное, кокосовое. Выпечку печём сами каждое утро.</p>
     </div>
   </section>
 
-  <section id="order" style="background:#fff">
-    <div class="wrap order">
-      <div class="panel">
-        <h3>Ваш заказ</h3>
-        <ul class="cart" id="cart"></ul>
-        <div class="total"><span>Итого</span><span id="total">0 BYN</span></div>
+  <section class="order-sec" id="order">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="words">Заказ с собой</h2><p>Оформите на сайте — бариста начнёт готовить за 5 минут до вашего времени. Оплата на месте картой или наличными.</p></div>
+      <div class="order">
+        <div>
+          <div class="panel">
+            <h3>Ваш заказ</h3>
+            <ul class="cart" id="cart"></ul>
+            <div class="total"><span>Итого</span><span id="total">0 BYN</span></div>
+          </div>
+          <div class="loyal">
+            <div class="stamps" id="stamps" aria-hidden="true"></div>
+            <div><h3>Карта гостя</h3><p id="stampsCap"></p></div>
+          </div>
+        </div>
+        <form class="panel" id="orderForm" novalidate>
+          <div id="formBody">
+            <h3>Когда заберёте</h3>
+            <div class="slots" id="slots" role="radiogroup" aria-label="Время, к которому приготовить"></div>
+            <p class="label" id="slotNote"></p>
+            <label class="field">Имя<input name="name" autocomplete="given-name" maxlength="30" placeholder="Как к вам обращаться"></label>
+            <label class="field">Телефон<input name="phone" type="tel" autocomplete="tel" placeholder="+375 29 123-45-67" maxlength="20"></label>
+            <p class="err" id="err" role="alert"></p>
+            <button class="btn btn--sun" type="submit">Оформить заказ</button>
+          </div>
+          <div class="done" id="done" hidden>
+            <h3 id="doneTitle">Заказ принят</h3>
+            <p id="doneText"></p>
+            <button class="btn" type="button" id="again">Заказать ещё</button>
+          </div>
+        </form>
       </div>
-      <form class="panel" id="orderForm" novalidate>
-        <div id="formBody">
-          <h3>Когда заберёте</h3>
-          <div class="slots" id="slots" role="radiogroup" aria-label="Время, к которому приготовить"></div>
-          <p class="label" id="slotNote"></p>
-          <label class="field">Имя<input name="name" autocomplete="given-name" maxlength="30"></label>
-          <label class="field">Телефон<input name="phone" type="tel" autocomplete="tel" placeholder="+375 29 123-45-67" maxlength="20"></label>
-          <p class="err" id="err" role="alert"></p>
-          <button class="btn btn--sun" type="submit">Оформить заказ</button>
-        </div>
-        <div class="done" id="done" hidden>
-          <h3 id="doneTitle">Заказ принят</h3>
-          <p id="doneText"></p>
-          <button class="btn" type="button" id="again">Заказать ещё</button>
-        </div>
-      </form>
     </div>
   </section>
 
-  <section>
-    <div class="wrap loyal">
+  <section id="reviews">
+    <div class="wrap reviews">
+      <div class="reviews__photo wipe"><img src="img/people-couple.jpg" alt="Гости кофейни за столиком с десертами" loading="lazy"></div>
       <div>
-        <h2>Седьмой кофе — от нас</h2>
-        <p>Каждый заказ через сайт ставит отметку на карте. Ничего печатать и носить с собой не нужно.</p>
+        <p class="eyebrow">Что говорят гости</p>
+        <h2 class="words">Возвращаются за флэт уайтом и тишиной</h2>
+        <div class="score"><b>4,9</b><span><span class="stars" aria-hidden="true">★★★★★</span><small>312 отзывов на Яндекс Картах · 4,8 в Google</small></span></div>
+        <div class="quote rise"><p>«Беру флэт уайт по пути на работу. Заказываю с остановки — подхожу, а он уже стоит с моим именем.»</p><span>Ольга, сентябрь</span></div>
+        <div class="quote rise"><p>«Лучший круассан в районе. Тёплый, слоёный, к восьми утра ещё не разобрали.»</p><span>Артём, октябрь</span></div>
+        <div class="quote rise"><p>«Сижу с ноутбуком по полдня, никто не торопит. Бариста помнит, что я пью капучино на овсяном.»</p><span>Катерина, август</span></div>
       </div>
-      <div class="stamps" id="stamps" aria-live="polite"></div>
     </div>
   </section>
 
-  <section id="place">
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="words">@utro.coffee</h2><p>Новое зерно, сезонные напитки и кто сегодня на смене — в Instagram.</p></div>
+      <div class="insta">
+        <a href="#" aria-label="Пост: капучино"><img src="img/menu-cappuccino.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Пост: круассаны"><img src="img/pastry-croissant.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Пост: столик у окна"><img src="img/interior-window.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Пост: зерно"><img src="img/beans-closeup.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Пост: гости"><img src="img/people-cafe.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Пост: латте-арт"><img src="img/hero-latte-art.jpg" alt="" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="place" style="background:#fff">
     <div class="wrap place">
-      <div><b>Где мы</b><p>Минск, ул. Рассветная, 4. Стойка заказов с собой — справа от входа.</p></div>
-      <div><b>Часы</b><p>Каждый день 07:30–21:00</p></div>
-      <div><b>Связаться</b><p><a href="tel:+375290000000">+375 29 000-00-00</a></p></div>
+      <div class="place__photo wipe"><img src="img/interior-window.jpg" alt="Столик у панорамного окна с растениями" loading="lazy"></div>
+      <div>
+        <p class="eyebrow">Как найти</p>
+        <h2>Кальварийская, 5</h2>
+        <dl>
+          <dt>Метро</dt><dd>5 минут пешком от «Фрунзенской»</dd>
+          <dt>Будни</dt><dd>07:30–21:00</dd>
+          <dt>Выходные</dt><dd>09:00–21:00</dd>
+          <dt>Телефон</dt><dd><a href="tel:+375290000000">+375 29 000-00-00</a></dd>
+        </dl>
+        <p class="hint">Заказ с собой — у стойки справа от входа. Назовите имя или номер заказа.</p>
+      </div>
     </div>
   </section>
 </main>
 
 <div class="dock" id="dock"><span id="dockText"></span><a class="btn btn--sun" href="#order">Оформить</a></div>
 
-<script src="../../js/demo-frame.js?v=3"></script>
+<script src="../../vendor/gsap.min.js"></script>
+<script src="../../vendor/ScrollTrigger.min.js"></script>
+<script src="../../vendor/lenis.min.js"></script>
+<script src="../../js/demo-frame.js?v=4"></script>
+<script src="../../js/demo-motion.js?v=1"></script>
 <script>
 const MENU = [
-  { id: 'esp', name: 'Эспрессо', about: 'Плотный, с нотами какао и долгим послевкусием.', sizes: [['60 мл', 4.5]] },
-  { id: 'ame', name: 'Американо', about: 'Эспрессо и горячая вода. Чистый вкус без молока.', sizes: [['0,3', 5], ['0,4', 6]] },
-  { id: 'cap', name: 'Капучино', about: 'Эспрессо и молоко с плотной бархатной пенкой.', sizes: [['0,3', 6.5], ['0,4', 7.5]] },
-  { id: 'flt', name: 'Флэт уайт', about: 'Двойной эспрессо и немного молока. Крепче капучино.', sizes: [['0,25', 7]] },
-  { id: 'lat', name: 'Латте', about: 'Много молока и мягкий вкус. Хорошо начать день.', sizes: [['0,3', 7], ['0,4', 8]] },
-  { id: 'raf', name: 'Раф с апельсином', about: 'Сливки, эспрессо и апельсиновая цедра. Наш фирменный.', sizes: [['0,3', 8.5], ['0,4', 9.5]] },
+  { id: 'esp', name: 'Эспрессо', img: 'menu-espresso', about: 'Плотный, с нотами какао и долгим послевкусием.', sizes: [['40 мл', 5]] },
+  { id: 'ame', name: 'Американо', img: 'menu-americano', about: 'Эспрессо и горячая вода. Чистый вкус без молока.', sizes: [['250 мл', 6], ['350 мл', 7]] },
+  { id: 'cap', name: 'Капучино', img: 'menu-cappuccino', about: 'Бархатная пенка и мягкий вкус. Самый частый заказ.', sizes: [['250 мл', 7.5], ['350 мл', 8.5]] },
+  { id: 'flt', name: 'Флэт уайт', img: 'menu-flat-white', about: 'Двойной эспрессо и немного молока. Крепче капучино.', sizes: [['200 мл', 8.5]] },
+  { id: 'lat', name: 'Латте', img: 'menu-latte', about: 'Много молока и нежный вкус. Хорошо с сиропом.', sizes: [['300 мл', 8.5], ['400 мл', 9.5]] },
+  { id: 'raf', name: 'Раф апельсиновый', img: 'menu-orange-raf', about: 'Сливки, эспрессо и цедра. Наш фирменный, осенью самый популярный.', sizes: [['300 мл', 9.5], ['400 мл', 10.5]] },
 ];
-const OPEN = [7 * 60 + 30, 21 * 60]; // минуты от полуночи
+const PASTRY = [
+  { id: 'cro', name: 'Круассан', img: 'pastry-croissant', about: 'Из печи в 7:40 и в 12:00. На сливочном масле.', sizes: [['шт.', 4.5]] },
+  { id: 'cin', name: 'Синнабон', img: 'pastry-cinnamon-roll', about: 'С корицей и сливочным кремом. К вечеру обычно заканчивается.', sizes: [['шт.', 5.5]] },
+];
+const HOURS = { weekday: [7 * 60 + 30, 21 * 60], weekend: [9 * 60, 21 * 60] };
 const $ = s => document.querySelector(s);
-const money = n => (Math.round(n * 100) / 100).toLocaleString('ru-RU', { minimumFractionDigits: n % 1 ? 2 : 0 }) + ' BYN';
+const money = n => n.toLocaleString('ru-RU', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' BYN';
 const hhmm = m => String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
 const store = { get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+const hoursFor = d => (d.getDay() === 0 || d.getDay() === 6) ? HOURS.weekend : HOURS.weekday;
+const now = new Date(), nowMin = now.getHours() * 60 + now.getMinutes(), today = hoursFor(now);
+const openNow = nowMin >= today[0] && nowMin < today[1];
 
-/* открыто сейчас или нет — по реальному времени посетителя */
-const nowMin = () => { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); };
-const isOpen = () => nowMin() >= OPEN[0] && nowMin() < OPEN[1];
-const openEl = $('#open');
-openEl.textContent = isOpen() ? 'Открыто до 21:00' : 'Закрыто, откроемся в 07:30';
-openEl.classList.toggle('is-closed', !isOpen());
+/* видео в первом экране: подгружаем после отрисовки, на вертикальном экране — своя версия */
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData) return;
+  const tall = matchMedia('(max-aspect-ratio: 1/1)').matches;
+  const v = document.createElement('video');
+  v.muted = true; v.loop = true; v.playsInline = true;
+  v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+  v.style.cssText = 'position:absolute;inset:0;opacity:0;transition:opacity .8s';
+  v.src = tall ? 'img/hero-m.mp4' : 'img/hero.mp4';
+  $('.hero__media').prepend(v);
+  v.addEventListener('playing', () => { v.style.opacity = '1'; setTimeout(() => $('#heroPoster')?.remove(), 900); }, { once: true });
+  v.play().catch(() => v.remove());
+})();
 
-/* меню */
-const cart = new Map(); // key id|size → {name, size, price, qty}
-const list = $('#menuList');
-MENU.forEach(d => {
-  const card = document.createElement('article');
-  card.className = 'drink';
-  card.innerHTML = `<h3></h3><p></p><div class="drink__row"><div class="sizes" role="group" aria-label="Объём"></div><span class="price"></span></div><button class="add" type="button">В заказ</button>`;
-  card.querySelector('h3').textContent = d.name;
-  card.querySelector('p').textContent = d.about;
+/* статус по реальному времени */
+const status = $('#status');
+const nextOpen = (() => { const t = new Date(now); if (nowMin >= today[1]) t.setDate(t.getDate() + 1); return hhmm(hoursFor(t)[0]); })();
+status.textContent = openNow ? `Открыто до ${hhmm(today[1])} · Кальварийская, 5` : `Закрыто · откроемся в ${nextOpen}`;
+status.classList.toggle('is-closed', !openNow);
+
+/* сколько чашек сварили сегодня: растёт в течение дня и тикает, пока открыто */
+const cupsEl = $('#cups');
+let cups = Math.max(0, Math.round((Math.min(nowMin, today[1]) - today[0]) * 0.42));
+cupsEl.textContent = cups;
+if (openNow) setInterval(() => { cups++; cupsEl.textContent = cups; }, 9000);
+$('.cups').hidden = cups === 0;
+
+/* бегущая строка: два одинаковых набора для бесшовной петли */
+const phrases = ['Круассаны из печи в 7:40', 'Овсяное молоко без доплаты', 'Розетки у каждого окна', 'Новое зерно каждый понедельник', 'Можно с собакой', 'Седьмой кофе — в подарок'];
+$('#ticker').innerHTML = [...phrases, ...phrases].map(p => `<span>${p}</span>`).join('');
+
+/* меню и выпечка */
+const cart = new Map();
+function card(d, target) {
+  const el = document.createElement('article');
+  el.className = 'drink rise';
+  el.innerHTML = `<div class="drink__img"><img loading="lazy" alt=""></div><div class="drink__body"><h3></h3><p></p><div class="drink__row"><div class="sizes" role="group" aria-label="Объём"></div><span class="price"></span></div><button class="add" type="button">В заказ</button></div>`;
+  const img = el.querySelector('img'); img.src = `img/${d.img}.jpg`; img.alt = d.name;
+  el.querySelector('h3').textContent = d.name;
+  el.querySelector('p').textContent = d.about;
   let pick = 0;
-  const sizes = card.querySelector('.sizes'), price = card.querySelector('.price'), add = card.querySelector('.add');
-  d.sizes.forEach(([label], i) => {
+  const sizes = el.querySelector('.sizes'), price = el.querySelector('.price'), add = el.querySelector('.add');
+  if (d.sizes.length === 1) {
+    const s = document.createElement('span'); s.textContent = d.sizes[0][0]; sizes.append(s);
+  } else d.sizes.forEach(([label], i) => {
     const b = document.createElement('button');
     b.type = 'button'; b.textContent = label; b.setAttribute('aria-pressed', i === 0);
     b.addEventListener('click', () => { pick = i; sizes.querySelectorAll('button').forEach((x, j) => x.setAttribute('aria-pressed', j === i)); price.textContent = money(d.sizes[i][1]); });
     sizes.append(b);
   });
-  if (d.sizes.length === 1) sizes.style.visibility = 'hidden';
   price.textContent = money(d.sizes[0][1]);
   add.addEventListener('click', () => {
     const [size, p] = d.sizes[pick], key = d.id + '|' + size;
     const row = cart.get(key) || { name: d.name, size, price: p, qty: 0 };
     row.qty++; cart.set(key, row); renderCart();
-    add.textContent = 'Добавлено'; add.classList.add('is-added');
+    add.textContent = 'Добавлено ✓'; add.classList.add('is-added');
     setTimeout(() => { add.textContent = 'В заказ'; add.classList.remove('is-added'); }, 1200);
   });
-  list.append(card);
-});
+  target.append(el);
+}
+MENU.forEach(d => card(d, $('#menuList')));
+PASTRY.forEach(d => card(d, $('#pastryList')));
 
 const sum = () => [...cart.values()].reduce((s, r) => s + r.price * r.qty, 0);
 const count = () => [...cart.values()].reduce((s, r) => s + r.qty, 0);
-const cups = n => n + ' ' + (n % 10 === 1 && n % 100 !== 11 ? 'напиток' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'напитка' : 'напитков');
+const items = n => n + ' ' + (n % 10 === 1 && n % 100 !== 11 ? 'позиция' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'позиции' : 'позиций');
+let orderVisible = false;
 function renderCart() {
   const ul = $('#cart'); ul.innerHTML = '';
-  if (!cart.size) { const li = document.createElement('li'); li.className = 'cart__empty'; li.textContent = 'Пока пусто. Добавьте напиток из меню выше.'; ul.append(li); }
+  if (!cart.size) { const li = document.createElement('li'); li.className = 'cart__empty'; li.textContent = 'Пока пусто. Добавьте напиток или выпечку из меню.'; ul.append(li); }
   cart.forEach((r, key) => {
     const li = document.createElement('li');
     li.innerHTML = '<span><b></b> <small></small></span><span class="qty"><button type="button" aria-label="Меньше">−</button><b></b><button type="button" aria-label="Больше">+</button></span>';
     li.querySelector('span b').textContent = r.name;
-    li.querySelector('small').textContent = r.size + ' · ' + money(r.price);
+    li.querySelector('small').textContent = `${r.size} · ${money(r.price)}`;
     li.querySelector('.qty b').textContent = r.qty;
     const [minus, plus] = li.querySelectorAll('.qty button');
     minus.addEventListener('click', () => { r.qty--; if (!r.qty) cart.delete(key); renderCart(); });
@@ -292,66 +494,62 @@ function renderCart() {
   const n = count();
   $('#dock').classList.toggle('show', n > 0 && !orderVisible);
   document.body.classList.toggle('has-cart', n > 0);
-  $('#dockText').textContent = `${cups(n)} · ${money(sum())}`;
+  $('#dockText').textContent = `${items(n)} · ${money(sum())}`;
 }
-let orderVisible = false;
-new IntersectionObserver(([e]) => { orderVisible = e.isIntersecting; renderCart(); }, { threshold: 0.15 }).observe($('#order'));
+new IntersectionObserver(([e]) => { orderVisible = e.isIntersecting; renderCart(); }, { threshold: 0.1 }).observe($('#order'));
 
-/* слоты: ближайшие 6 по 10 минут, не раньше чем через 10 минут и только в часы работы */
+/* слоты: ближайшие 6 по 10 минут, не раньше чем через 10 минут, в часы работы; если закрыто — на утро */
+let forTomorrow = false;
 function renderSlots() {
   const box = $('#slots'); box.innerHTML = '';
-  let start = Math.ceil((nowMin() + 10) / 10) * 10, tomorrow = false;
-  if (start < OPEN[0]) start = OPEN[0];
-  if (start > OPEN[1] - 10) { start = OPEN[0]; tomorrow = true; }
-  for (let i = 0, m = start; i < 6 && m <= OPEN[1] - 10; i++, m += 10) {
+  let day = today, start = Math.ceil((nowMin + 10) / 10) * 10;
+  forTomorrow = false;
+  if (start < day[0]) start = day[0];
+  if (start > day[1] - 10) { const t = new Date(now); t.setDate(t.getDate() + 1); day = hoursFor(t); start = day[0]; forTomorrow = true; }
+  for (let i = 0, m = start; i < 6 && m <= day[1] - 10; i++, m += 10) {
     const l = document.createElement('label');
     l.innerHTML = `<input type="radio" name="slot" value="${hhmm(m)}"${i === 0 ? ' checked' : ''}><span>${hhmm(m)}</span>`;
     box.append(l);
   }
-  $('#slotNote').textContent = tomorrow ? 'Сейчас закрыто — приготовим завтра утром.' : 'Приготовим ровно к этому времени.';
-  return tomorrow;
+  $('#slotNote').textContent = forTomorrow ? 'Сейчас закрыто — приготовим завтра утром.' : 'Приготовим ровно к этому времени.';
 }
-let tomorrow = renderSlots();
+renderSlots();
 
-/* карта лояльности */
+/* карта гостя */
 function renderStamps(fresh) {
   const n = store.get('utro-stamps', 2) % 7, box = $('#stamps'); box.innerHTML = '';
   for (let i = 1; i <= 7; i++) {
     const s = document.createElement('span');
     s.className = 'stamp' + (i <= n ? ' on' : '') + (i === 7 ? ' gift' : '') + (fresh && i === n ? ' new' : '');
     s.textContent = i === 7 ? '★' : '';
-    s.setAttribute('aria-hidden', 'true');
     box.append(s);
   }
-  const cap = document.createElement('p'); cap.className = 'stamps__cap';
-  cap.textContent = n === 6 ? 'Следующий кофе — в подарок' : `Отметок: ${n} из 7. До подарка ${6 - n}.`;
-  box.append(cap);
+  $('#stampsCap').textContent = n === 6 ? 'Следующий кофе — в подарок.' : `Каждый заказ с сайта — отметка. До подарка ещё ${6 - n}.`;
 }
 renderStamps(false);
 
-/* заказ */
+/* оформление */
 const phoneOk = v => { const d = v.replace(/\D/g, ''); return d.length >= 9 && d.length <= 15; };
 $('#orderForm').addEventListener('submit', e => {
   e.preventDefault();
   const f = e.target, err = $('#err');
-  if (!count()) { err.textContent = 'Добавьте хотя бы один напиток из меню.'; return; }
-  if (!phoneOk(f.phone.value)) { err.textContent = 'Укажите телефон: по нему бариста найдёт заказ.'; f.phone.focus(); return; }
+  if (!count()) { err.textContent = 'Добавьте хотя бы одну позицию из меню.'; return; }
+  if (!phoneOk(f.phone.value)) { err.textContent = 'Укажите телефон — по нему бариста найдёт заказ.'; f.phone.focus(); return; }
   err.textContent = '';
   const slot = f.slot.value, name = f.name.value.trim() || 'Гость', no = 20 + Math.floor(Math.random() * 70);
-  const items = [...cart.values()].map(r => `${r.name} ${r.size} × ${r.qty}`);
-  const total = money(sum());
+  const list = [...cart.values()].map(r => `${r.name}, ${r.size} × ${r.qty}`), total = money(sum());
   $('#formBody').hidden = true; $('#done').hidden = false;
   $('#doneTitle').textContent = `Заказ №${no} принят`;
-  $('#doneText').textContent = `${tomorrow ? 'Завтра к' : 'К'} ${slot} заказ будет ждать на стойке справа от входа. Назовите номер или имя. Оплата на месте.`;
+  $('#doneText').textContent = `${forTomorrow ? 'Завтра к' : 'К'} ${slot} заказ будет ждать на стойке справа от входа. Назовите имя или номер. Оплата на месте.`;
   store.set('utro-stamps', store.get('utro-stamps', 2) + 1);
   renderStamps(true);
   zsOwner('Утро · заказы с собой', [
-    [`Новый предзаказ №${no} к ${slot}`, [...items, `Итого: ${total}`, `${name}, ${f.phone.value.trim()}`]],
+    [`Новый предзаказ №${no} к ${slot}`, [...list, `Итого: ${total}`, `${name}, ${f.phone.value.trim()}`]],
     ['Напоминание бариста', [`Через 5 минут начинайте готовить заказ №${no}`]],
   ]);
   cart.clear(); renderCart();
 });
-$('#again').addEventListener('click', () => { $('#formBody').hidden = false; $('#done').hidden = true; tomorrow = renderSlots(); location.hash = '#menu'; });
+$('#again').addEventListener('click', () => { $('#formBody').hidden = false; $('#done').hidden = true; renderSlots(); $('#menu').scrollIntoView({ behavior: 'smooth' }); });
 renderCart();
 </script>
 </body>

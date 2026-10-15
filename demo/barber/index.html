@@ -4,88 +4,142 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Барбершоп «Чуб» — демо-сайт студии «Зелёный свет»</title>
-<meta name="description" content="Демо-сайт барбершопа: онлайн-запись к мастеру со свободными окнами и напоминанием. Сделано студией «Зелёный свет».">
+<meta name="description" content="Демо-сайт барбершопа: онлайн-запись к мастеру, цены по уровню мастера, работы и подарочные сертификаты. Сделано студией «Зелёный свет».">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/demo-frame.css?v=3">
+<link rel="preload" as="image" href="img/video-clipper-closeup-poster.jpg">
+<link rel="stylesheet" href="../../css/demo-frame.css?v=4">
 <style>
 @font-face { font-family: Oswald; src: url(../../fonts/oswald-cyrillic.woff2) format("woff2"); font-weight: 200 700; font-display: swap; unicode-range: U+0400-045F, U+2116; }
 @font-face { font-family: Oswald; src: url(../../fonts/oswald-latin.woff2) format("woff2"); font-weight: 200 700; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F; }
 @font-face { font-family: Manrope; src: url(../../fonts/manrope-cyrillic.woff2) format("woff2"); font-weight: 200 800; font-display: swap; unicode-range: U+0400-045F, U+2116; }
 @font-face { font-family: Manrope; src: url(../../fonts/manrope-latin.woff2) format("woff2"); font-weight: 200 800; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F; }
-:root { --bone: #F5F5F2; --navy: #1B2A4A; --red: #C8323C; --steel: #8A94A6; --line: #D9DCE2; --card: #FFFFFF; --muted: #4F5B70; }
+:root { --bone: #F4F2EE; --navy: #16213A; --navy-2: #22355C; --red: #C8323C; --line: #D9DCE2; --card: #FFFFFF; --muted: #4F5B70; --soft: #C3CADB; }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 70px; }
-body { margin: 0; background: var(--bone); color: var(--navy); font: 400 17px/1.55 Manrope, system-ui, sans-serif; }
-h1, h2, h3 { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 600; margin: 0; line-height: 1; letter-spacing: .01em; }
+html { scroll-padding-top: 70px; }
+body { margin: 0; background: var(--bone); color: var(--navy); font: 400 17px/1.6 Manrope, system-ui, sans-serif; }
+h1, h2, h3 { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 600; margin: 0; line-height: 1.02; letter-spacing: .005em; }
 p { margin: 0; }
+img, video { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; }
+a { color: inherit; }
 :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; border-radius: 6px; }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: clamp(20px, 4vw, 40px); }
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border: 0; border-radius: 4px; background: var(--red); color: #fff; font: 600 18px Oswald, sans-serif; letter-spacing: .04em; text-decoration: none; cursor: pointer; transition: background .2s, transform .15s; }
 .btn:hover { background: #AE2730; }
 .btn:active { transform: scale(.98); }
-.btn--ghost { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
-.btn--ghost:hover { background: var(--navy); color: #fff; }
+.btn--ghost { background: transparent; color: #fff; border: 2px solid rgba(255, 255, 255, .7); }
+.btn--ghost:hover { background: rgba(255, 255, 255, .12); }
+.btn--line { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.btn--line:hover { background: var(--navy); color: #fff; }
+.eyebrow { font-weight: 700; color: var(--red); font-size: 15px; margin-bottom: 12px; }
 
-.top { display: flex; align-items: center; justify-content: space-between; padding-block: 18px; }
-.brand { font: 700 34px Oswald, sans-serif; letter-spacing: .06em; text-decoration: none; color: inherit; }
-.top a.tel { font-weight: 700; color: inherit; text-decoration: none; padding: 10px 0; }
+/* первый экран: видео со стрижкой */
+.hero { position: relative; min-height: min(100svh, 880px); display: flex; flex-direction: column; color: #fff; overflow: hidden; background: #0E1424; }
+.hero > .wrap { width: 100%; }
+.hero__media { position: absolute; inset: 0; }
+.hero__media img, .hero__media video { width: 100%; height: 100%; object-fit: cover; }
+.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 20, 36, .88) 0%, rgba(14, 20, 36, .55) 55%, rgba(14, 20, 36, .2) 100%), linear-gradient(0deg, rgba(14, 20, 36, .7), transparent 45%); }
+.nav { position: relative; z-index: 2; display: flex; align-items: center; gap: 28px; padding-block: 20px; }
+.brand { font: 700 34px Oswald, sans-serif; letter-spacing: .08em; text-decoration: none; }
+.nav__links { display: flex; gap: 26px; margin-left: auto; font-weight: 600; font-size: 15px; }
+.nav__links a { text-decoration: none; padding: 8px 0; opacity: .9; }
+.nav__links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.nav .btn { min-height: 44px; padding: 0 20px; font-size: 16px; }
+.hero__body { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: center; padding-block: 32px 48px; }
+.hero h1 { font-size: clamp(56px, 9vw, 132px); text-transform: uppercase; max-width: 9ch; }
+.hero__lead { margin-top: 20px; max-width: 38ch; font-size: clamp(18px, 1.6vw, 20px); color: rgba(255, 255, 255, .88); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.hero__foot { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 14px 36px; align-items: center; padding-block: 0 28px; font-size: 15px; color: rgba(255, 255, 255, .88); }
+.rate b { font: 600 28px Oswald, sans-serif; color: #fff; margin-right: 6px; }
+.stars { color: #FFC24B; letter-spacing: 2px; }
 
-/* hero: полоса-вывеска барбершопа крутится как настоящая */
-.hero { display: grid; grid-template-columns: 1.3fr auto; gap: 48px; align-items: center; padding-block: clamp(24px, 5vw, 56px) clamp(56px, 8vw, 96px); }
-.hero h1 { font-size: clamp(56px, 9vw, 128px); text-transform: uppercase; }
-.hero p { margin-top: 20px; max-width: 36ch; font-size: clamp(18px, 1.6vw, 20px); color: var(--muted); }
-.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
-.pole { width: clamp(64px, 8vw, 96px); height: clamp(260px, 34vw, 400px); border-radius: 48px; padding: 10px; background: var(--navy); box-shadow: inset 0 0 0 4px #2B3D63; }
-.pole__glass { height: 100%; border-radius: 40px; background: repeating-linear-gradient(-45deg, var(--red) 0 18px, #fff 18px 36px, var(--navy) 36px 54px, #fff 54px 72px); background-size: 100% 204px; box-shadow: inset 8px 0 14px rgba(255, 255, 255, .5), inset -8px 0 14px rgba(0, 0, 0, .25); }
-@media (prefers-reduced-motion: no-preference) { .pole__glass { animation: spin 3s linear infinite; } }
-@keyframes spin { to { background-position: 0 204px; } }
+.ticker { overflow: hidden; background: var(--red); color: #fff; font: 600 18px Oswald, sans-serif; letter-spacing: .03em; }
+.ticker__track { display: flex; width: max-content; gap: 44px; padding: 13px 0; }
+.ticker span::before { content: "✂"; margin-right: 12px; opacity: .8; }
+@media (prefers-reduced-motion: no-preference) { .ticker__track { animation: tick 36s linear infinite; } }
+@keyframes tick { to { transform: translateX(-50%); } }
 
-section { padding: clamp(56px, 8vw, 96px) 0; }
-.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; }
-.sec-head h2 { font-size: clamp(40px, 5.6vw, 68px); text-transform: uppercase; }
-.sec-head p { color: var(--muted); max-width: 40ch; }
+section { padding-block: clamp(64px, 9vw, 120px); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 20px 48px; flex-wrap: wrap; margin-bottom: 36px; }
+.sec-head h2 { font-size: clamp(42px, 6vw, 76px); text-transform: uppercase; }
+.sec-head p { color: var(--muted); max-width: 42ch; }
 
-.price { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--navy); }
-.price li { display: grid; grid-template-columns: 1fr auto auto; gap: 8px 28px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
-.price b { font: 600 24px Oswald, sans-serif; letter-spacing: .02em; }
-.price small { grid-column: 1; color: var(--muted); font-size: 15px; }
-.price em { font-style: normal; color: var(--muted); font-size: 15px; white-space: nowrap; grid-row: 1; grid-column: 2; }
-.price strong { font: 600 24px Oswald, sans-serif; grid-row: 1; grid-column: 3; white-space: nowrap; }
+/* что делаем: три крупные карточки с фото и видео */
+.craft { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; }
+.craft__item { position: relative; min-height: 460px; border-radius: 6px; overflow: hidden; color: #fff; background: #0E1424; }
+.craft__item img, .craft__item video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.craft__item:hover img, .craft__item:hover video { transform: scale(1.05); }
+.craft__item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14, 20, 36, .9) 0%, rgba(14, 20, 36, .1) 60%); }
+.craft__txt { position: absolute; z-index: 1; left: 22px; right: 22px; bottom: 22px; }
+.craft__txt h3 { font-size: 32px; text-transform: uppercase; }
+.craft__txt p { margin-top: 6px; color: rgba(255, 255, 255, .85); font-size: 15px; }
 
-.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.master { padding: 24px; border-radius: 6px; background: var(--card); border: 1px solid var(--line); }
-.master__ava { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: #fff; font: 600 28px Oswald, sans-serif; margin-bottom: 16px; }
-.master h3 { font-size: 28px; }
-.master p { margin-top: 6px; color: var(--muted); font-size: 15px; }
-.master .tag { display: inline-block; margin-top: 12px; padding: 6px 12px; border-radius: 4px; background: var(--bone); font-size: 14px; font-weight: 700; }
+/* цены */
+.price-wrap { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+.price { width: 100%; border-collapse: collapse; }
+.price th { text-align: right; padding: 0 0 12px 16px; font: 600 16px Oswald, sans-serif; letter-spacing: .04em; color: var(--muted); text-transform: uppercase; white-space: nowrap; }
+.price th:first-child { text-align: left; padding-left: 0; }
+.price td { padding: 16px 0 16px 16px; border-top: 1px solid var(--line); text-align: right; font: 600 22px Oswald, sans-serif; white-space: nowrap; vertical-align: top; }
+.price td:first-child { text-align: left; padding-left: 0; font: 600 21px Oswald, sans-serif; white-space: normal; }
+.price td small { display: block; font: 400 14px Manrope, sans-serif; color: var(--muted); margin-top: 2px; }
+.price tr:first-child td { border-top: 2px solid var(--navy); }
+.side { display: grid; gap: 16px; }
+.side__photo { border-radius: 6px; overflow: hidden; aspect-ratio: 4 / 3; }
+.side__photo img { width: 100%; height: 100%; object-fit: cover; }
+.extras { padding: 22px; border-radius: 6px; background: var(--card); border: 1px solid var(--line); }
+.extras h3 { font-size: 24px; text-transform: uppercase; margin-bottom: 10px; }
+.extras li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.extras ul { list-style: none; margin: 0; padding: 0; }
+.extras b { white-space: nowrap; }
+
+/* мастера */
+.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.master { display: flex; flex-direction: column; border-radius: 6px; overflow: hidden; background: var(--card); border: 1px solid var(--line); }
+.master__photo { aspect-ratio: 4 / 5; overflow: hidden; }
+.master__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .8s ease; }
+.master:hover .master__photo img { transform: scale(1.04); }
+.master__body { display: flex; flex-direction: column; gap: 8px; padding: 22px; flex: 1; }
+.master h3 { font-size: 32px; text-transform: uppercase; }
+.master .role { color: var(--red); font-weight: 700; font-size: 15px; }
+.master q { color: var(--muted); flex: 1; }
+.master .btn { margin-top: 10px; }
+
+/* работы */
+.works { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 12px; }
+.works figure { position: relative; margin: 0; overflow: hidden; border-radius: 6px; }
+.works figure:nth-child(1) { grid-row: span 2; }
+.works figure:nth-child(4) { grid-column: span 2; }
+.works img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
+.works figure:hover img { transform: scale(1.05); }
+.works figcaption { position: absolute; left: 12px; bottom: 12px; padding: 6px 12px; border-radius: 4px; background: rgba(14, 20, 36, .8); color: #fff; font-size: 14px; font-weight: 600; }
 
 /* запись */
 #book { background: var(--navy); color: #fff; }
-#book .sec-head p { color: #C3CADB; }
+#book .sec-head p { color: var(--soft); }
 .wizard { display: grid; grid-template-columns: 240px 1fr; gap: 32px; }
+.wizard > * { min-width: 0; }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; align-content: start; counter-reset: s; }
 .steps li { display: flex; align-items: center; gap: 12px; padding: 12px 0; color: #8C97B0; font-weight: 600; }
 .steps li::before { counter-increment: s; content: counter(s); width: 32px; height: 32px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 1px solid #44567D; font: 600 16px Oswald, sans-serif; }
 .steps li.on { color: #fff; }
 .steps li.on::before { background: var(--red); border-color: var(--red); }
-.steps li.done { color: #C3CADB; }
-.steps li.done::before { content: "✓"; background: #2B3D63; }
-.steps small { display: block; font-weight: 400; color: #C3CADB; font-size: 14px; }
-.wizard > * { min-width: 0; }
-.stage { min-height: 360px; padding: clamp(20px, 3vw, 32px); border-radius: 6px; background: #22355C; }
+.steps li.done { color: var(--soft); }
+.steps li.done::before { content: "✓"; background: var(--navy-2); }
+.steps small { display: block; font-weight: 400; color: var(--soft); font-size: 14px; }
+.stage { min-height: 360px; padding: clamp(20px, 3vw, 32px); border-radius: 6px; background: var(--navy-2); }
 .stage h3 { font-size: 30px; text-transform: uppercase; margin-bottom: 18px; }
 .opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
-.opt { display: flex; flex-direction: column; gap: 2px; min-height: 64px; padding: 14px 16px; border-radius: 6px; border: 1px solid #44567D; background: transparent; text-align: left; cursor: pointer; transition: border-color .2s, background .2s; }
+.opt { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 16px; border-radius: 6px; border: 1px solid #44567D; background: transparent; text-align: left; cursor: pointer; transition: border-color .2s, background .2s; }
 .opt:hover { border-color: #fff; }
-.opt b { font-size: 17px; }
-.opt small { color: #C3CADB; font-size: 14px; }
+.opt img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top; flex: none; }
+.opt b { display: block; font-size: 17px; }
+.opt small { color: var(--soft); font-size: 14px; }
 .opt[aria-pressed="true"] { background: #fff; color: var(--navy); border-color: #fff; }
 .opt[aria-pressed="true"] small { color: var(--muted); }
-.days { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; scrollbar-width: thin; }
+.days { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; }
 .day { flex: none; width: 72px; min-height: 64px; border-radius: 6px; border: 1px solid #44567D; background: transparent; cursor: pointer; line-height: 1.2; }
-.day small { display: block; color: #C3CADB; font-size: 13px; }
+.day small { display: block; color: var(--soft); font-size: 13px; }
 .day b { font: 600 22px Oswald, sans-serif; }
 .day[aria-pressed="true"] { background: #fff; color: var(--navy); }
 .day[aria-pressed="true"] small { color: var(--muted); }
@@ -95,78 +149,163 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
 .time:hover:not(:disabled) { border-color: #fff; }
 .time:disabled { color: #6A7A9C; text-decoration: line-through; border-style: dashed; cursor: not-allowed; }
 .time[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
-.hint { margin-top: 14px; color: #C3CADB; font-size: 15px; }
+.hint { margin-top: 14px; color: var(--soft); font-size: 15px; }
 .field { display: grid; gap: 6px; margin-bottom: 14px; font-size: 15px; font-weight: 700; }
-.field input { min-height: 52px; padding: 0 14px; border-radius: 6px; border: 1px solid #44567D; background: #1B2A4A; color: #fff; font: 400 17px Manrope, sans-serif; }
+.field input { min-height: 52px; padding: 0 14px; border-radius: 6px; border: 1px solid #44567D; background: var(--navy); color: #fff; font: 400 17px Manrope, sans-serif; }
 .field input::placeholder { color: #8C97B0; }
 .field input:focus { outline: none; border-color: #fff; }
-.summary { padding: 16px; border-radius: 6px; background: #1B2A4A; margin-bottom: 18px; }
+.summary { padding: 16px; border-radius: 6px; background: var(--navy); margin-bottom: 18px; }
 .summary p + p { margin-top: 4px; }
 .err { color: #FF9AA0; font-size: 15px; margin: 0 0 12px; }
 .err:empty { display: none; }
-.nav { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
-.nav .btn--ghost { color: #fff; border-color: #44567D; }
-.nav .btn--ghost:hover { background: #2B3D63; }
-.ok h3 { color: #fff; }
-.ok p { color: #C3CADB; margin-top: 8px; }
+.nav-row { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+.nav-row .btn--ghost { border-color: #44567D; }
+.ok p { color: var(--soft); margin-top: 8px; }
 
-.place { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.place b { display: block; font: 600 24px Oswald, sans-serif; text-transform: uppercase; margin-bottom: 6px; }
-.place p, .place a { color: var(--muted); }
+/* сертификат */
+.gift { display: grid; grid-template-columns: 1fr 1fr; border-radius: 6px; overflow: hidden; background: var(--card); border: 1px solid var(--line); }
+.gift__photo { min-height: 380px; }
+.gift__photo img { width: 100%; height: 100%; object-fit: cover; }
+.gift__body { padding: clamp(24px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; }
+.gift h2 { font-size: clamp(36px, 4.6vw, 56px); text-transform: uppercase; }
+.gift p { margin-top: 12px; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.chips label { position: relative; }
+.chips input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.chips span { display: inline-flex; align-items: center; min-height: 46px; padding: 0 18px; border-radius: 4px; border: 2px solid var(--line); font: 600 18px Oswald, sans-serif; }
+.chips input:checked + span { background: var(--navy); border-color: var(--navy); color: #fff; }
+.chips input:focus-visible + span { outline: 3px solid var(--red); outline-offset: 2px; }
+.gift form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.gift input[type=tel] { flex: 1 1 200px; min-height: 52px; padding: 0 14px; border-radius: 4px; border: 2px solid var(--line); font: 400 17px Manrope, sans-serif; }
+.gift input[type=tel]:focus { outline: none; border-color: var(--navy); }
+.gift .err { color: #B3402E; margin-top: 10px; width: 100%; }
 
-@media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; }
-  .pole { display: none; }
-  .team { grid-template-columns: 1fr; }
+/* отзывы */
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.review { padding: 24px; border-radius: 6px; background: var(--card); border: 1px solid var(--line); }
+.review p { font-size: 17px; }
+.review span { display: block; margin-top: 14px; color: var(--muted); font-size: 15px; }
+.score { display: flex; gap: 28px; flex-wrap: wrap; }
+.score div b { font: 600 48px/1 Oswald, sans-serif; }
+.score div small { display: block; color: var(--muted); }
+
+.place { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.place__photo { border-radius: 6px; overflow: hidden; aspect-ratio: 16 / 11; }
+.place__photo img { width: 100%; height: 100%; object-fit: cover; }
+.place h2 { font-size: clamp(40px, 5vw, 60px); text-transform: uppercase; }
+.place dl { margin: 22px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 20px; }
+.place dt { color: var(--muted); }
+.place dd { margin: 0; font-weight: 700; }
+
+@media (max-width: 960px) {
+  .nav__links { display: none; }
+  .nav .btn { margin-left: auto; }
+  .craft { grid-template-columns: 1fr 1fr; }
+  .craft__item:first-child { grid-column: 1 / -1; min-height: 380px; }
+  .price-wrap, .gift, .place { grid-template-columns: 1fr; }
+  .team, .reviews { grid-template-columns: 1fr; }
+  .master { flex-direction: row; }
+  .master__photo { width: 40%; flex: none; aspect-ratio: auto; }
+  .works { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+  .works figure:nth-child(4) { grid-column: auto; }
   .wizard { grid-template-columns: 1fr; }
   .steps { grid-template-columns: repeat(4, 1fr); }
   .steps li { flex-direction: column; text-align: center; gap: 6px; font-size: 13px; padding: 0; }
   .steps small { display: none; }
+  .gift__photo { min-height: 240px; }
 }
 @media (max-width: 600px) {
-  .place { grid-template-columns: 1fr; }
-  .price li { grid-template-columns: 1fr auto; }
-  .price em { grid-row: 2; grid-column: 2; text-align: right; }
-  .price strong { grid-row: 1; grid-column: 2; text-align: right; }
-  .hero__cta .btn { flex: 1 1 100%; }
-  .nav .btn { flex: 1 1 100%; }
+  .craft { grid-template-columns: 1fr; }
+  .craft__item { min-height: 320px; }
+  .master { flex-direction: column; }
+  .master__photo { width: 100%; aspect-ratio: 4 / 3; }
+  .hero__cta .btn, .nav-row .btn { flex: 1 1 100%; }
+  .price th, .price td { padding-left: 8px; }
+  .price td { font-size: 19px; }
 }
 </style>
 </head>
 <body data-demo="barber" data-demo-name="Барбершоп «Чуб»" data-service="Сайт компании">
 
-<div class="wrap top">
-  <a class="brand" href="#">ЧУБ</a>
-  <a class="tel" href="tel:+375290000000">+375 29 000-00-00</a>
-</div>
+<header class="hero" data-hero>
+  <div class="hero__media" aria-hidden="true"><img class="kenburns" id="heroPoster" src="img/video-clipper-closeup-poster.jpg" alt=""></div>
+  <div class="wrap nav">
+    <a class="brand" href="#">ЧУБ</a>
+    <nav class="nav__links" aria-label="Разделы"><a href="#price">Цены</a><a href="#team">Мастера</a><a href="#works">Работы</a><a href="#place">Как найти</a></nav>
+    <a class="btn" href="#book">Записаться</a>
+  </div>
+  <div class="wrap hero__body">
+    <h1 class="words">Стрижём и&nbsp;бреем</h1>
+    <p class="hero__lead">Барбершоп у метро «Немига». Свободные окна видно сразу, запись за минуту. Накануне напомним в Telegram.</p>
+    <div class="hero__cta"><a class="btn" href="#book">Записаться онлайн</a><a class="btn btn--ghost" href="#price">Цены</a></div>
+  </div>
+  <div class="wrap hero__foot">
+    <span class="rate"><b>4,9</b><span class="stars" aria-hidden="true">★★★★★</span> 640 отзывов на Яндекс Картах</span>
+    <span>Ежедневно 10:00–22:00 · Немига, 12</span>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="ticker__track" id="ticker"></div></div>
 
 <main>
-  <div class="wrap hero">
-    <div>
-      <h1>Стрижка без очереди</h1>
-      <p>Выберите мастера и время онлайн — свободные окна видно сразу. Накануне напомним в Telegram.</p>
-      <div class="hero__cta"><a class="btn" href="#book">Записаться</a><a class="btn btn--ghost" href="#price">Цены</a></div>
-    </div>
-    <div class="pole" aria-hidden="true"><div class="pole__glass"></div></div>
-  </div>
-
-  <section id="price">
+  <section>
     <div class="wrap">
-      <div class="sec-head"><h2>Цены</h2><p>Цена не зависит от мастера. Мытьё головы и укладка входят во все стрижки.</p></div>
-      <ul class="price" id="priceList"></ul>
+      <div class="sec-head"><h2 class="words">Что делаем</h2><p>Стрижку подбираем под форму головы и под то, как вы укладываетесь по утрам. Кофе или чай — пока ждёте.</p></div>
+      <div class="craft">
+        <div class="craft__item rise"><img src="img/process-clipper-closeup.jpg" alt="Мастер делает фейд машинкой" loading="lazy"><div class="craft__txt"><h3>Фейд и стрижки</h3><p>Плавные переходы, классика ножницами, текстура. От 45 BYN.</p></div></div>
+        <div class="craft__item rise"><img src="img/process-beard-trim-scissors.jpg" alt="Мастер оформляет бороду ножницами" loading="lazy"><div class="craft__txt"><h3>Борода</h3><p>Форма, контур бритвой, масло. От 35 BYN.</p></div></div>
+        <div class="craft__item rise" id="shaveCard"><img src="img/video-razor-shave-poster.jpg" alt="Королевское бритьё опасной бритвой" loading="lazy"><div class="craft__txt"><h3>Королевское бритьё</h3><p>Горячие полотенца и опасная бритва. 45 BYN.</p></div></div>
+      </div>
     </div>
   </section>
 
-  <section id="team" style="padding-top:0">
+  <section id="price" style="padding-top:0">
     <div class="wrap">
-      <div class="sec-head"><h2>Мастера</h2><p>Три мастера, каждый со своей сильной стороной.</p></div>
+      <div class="sec-head"><h2 class="words">Цены</h2><p>Цена зависит от опыта мастера. Мытьё головы и укладка входят в каждую стрижку.</p></div>
+      <div class="price-wrap">
+        <table class="price">
+          <thead><tr><th>Услуга</th><th>Барбер</th><th>Топ-барбер</th></tr></thead>
+          <tbody id="priceRows"></tbody>
+        </table>
+        <div class="side">
+          <div class="side__photo wipe"><img src="img/tools-table-wood.jpg" alt="Инструменты мастера на деревянном столе" loading="lazy"></div>
+          <div class="extras">
+            <h3>Добавить к визиту</h3>
+            <ul>
+              <li><span>Горячее полотенце</span><b>+5 BYN</b></li>
+              <li><span>Камуфляж седины</span><b>+20 BYN</b></li>
+              <li><span>Укладка воском или пастой</span><b>+5 BYN</b></li>
+              <li><span>«Папа + сын», две стрижки</span><b>80 BYN</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" style="background:#fff">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="words">Мастера</h2><p>Три человека, у каждого свой почерк. Записывайтесь к тому, кто ближе по стилю.</p></div>
       <div class="team" id="teamList"></div>
+    </div>
+  </section>
+
+  <section id="works">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="words">Работы</h2><p>Свежие стрижки из кресла. Больше — в Instagram @chub.barbers.</p></div>
+      <div class="works">
+        <figure class="rise"><img src="img/work-beard-pompadour.jpg" alt="Помпадур с тейпером и бородой" loading="lazy"><figcaption>Помпадур и борода · Илья</figcaption></figure>
+        <figure class="rise"><img src="img/work-quiff-fade.jpg" alt="Кифф с фейдом" loading="lazy"><figcaption>Кифф с фейдом · Максим</figcaption></figure>
+        <figure class="rise"><img src="img/work-pompadour-side.jpg" alt="Помпадур сбоку" loading="lazy"><figcaption>Классика · Николай</figcaption></figure>
+        <figure class="rise"><img src="img/process-fade-clipper-back.jpg" alt="Фейд, вид сзади" loading="lazy"><figcaption>Низкий фейд · Максим</figcaption></figure>
+        <figure class="rise"><img src="img/kids-haircut-boy.jpg" alt="Детская стрижка" loading="lazy"><figcaption>Детская · Николай</figcaption></figure>
+      </div>
     </div>
   </section>
 
   <section id="book">
     <div class="wrap">
-      <div class="sec-head"><h2>Запись</h2><p>Четыре шага, около минуты. Перечёркнутое время уже занято.</p></div>
+      <div class="sec-head"><h2 class="words">Запись</h2><p>Четыре шага, около минуты. Перечёркнутое время уже занято. Удобнее по телефону — <a href="tel:+375290000000">+375 29 000-00-00</a>.</p></div>
       <div class="wizard">
         <ol class="steps" id="steps">
           <li><span>Услуга<small id="sumSvc"></small></span></li>
@@ -180,42 +319,139 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
   </section>
 
   <section>
+    <div class="wrap">
+      <div class="gift">
+        <div class="gift__photo wipe"><img src="img/interior-chair-sunlight.jpg" alt="Барберское кресло у открытой двери" loading="lazy"></div>
+        <div class="gift__body">
+          <p class="eyebrow">Подарок, который точно пригодится</p>
+          <h2>Сертификат</h2>
+          <p>Электронный — придёт в Telegram за минуту. Бумажный — в крафтовом конверте, заберёте у администратора. Действует 6 месяцев на любую услугу.</p>
+          <div class="chips" role="radiogroup" aria-label="Сумма сертификата">
+            <label><input type="radio" name="gift" value="50" checked><span>50 BYN</span></label>
+            <label><input type="radio" name="gift" value="80"><span>80 BYN</span></label>
+            <label><input type="radio" name="gift" value="120"><span>120 BYN</span></label>
+          </div>
+          <form id="giftForm" novalidate>
+            <input type="tel" name="phone" placeholder="Ваш телефон" autocomplete="tel" maxlength="20" aria-label="Телефон для сертификата">
+            <button class="btn" type="submit">Заказать</button>
+            <p class="err" id="giftErr" role="alert"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="words">Отзывы</h2>
+        <div class="score"><div><b>4,9</b><small>Яндекс Карты · 640</small></div><div><b>4,8</b><small>Google · 210</small></div></div>
+      </div>
+      <div class="reviews">
+        <div class="review rise"><p>«Хожу к Илье третий год. Ни разу не пришлось объяснять заново — помнит, какой фейд я ношу и где у меня вихор.»</p><span>Денис, октябрь</span></div>
+        <div class="review rise"><p>«Подарил отцу королевское бритьё. Вернулся довольный, с горячим полотенцем и кофе. Теперь ходим вдвоём, по „Папа + сын“.»</p><span>Кирилл, сентябрь</span></div>
+        <div class="review rise"><p>«Записался в 9 вечера на завтра, утром пришло напоминание. Пришёл — кресло свободно, никакой очереди.»</p><span>Антон, сентябрь</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="place" style="background:#fff">
     <div class="wrap place">
-      <div><b>Адрес</b><p>Минск, ул. Стальная, 7. Вход со двора, вывеска с полосатым столбом.</p></div>
-      <div><b>Часы</b><p>Каждый день 10:00–21:00</p></div>
-      <div><b>Телефон</b><p><a href="tel:+375290000000">+375 29 000-00-00</a></p></div>
+      <div class="place__photo wipe"><img src="img/interior-chairs-light.jpg" alt="Кожаные кресла и зеркала в зале барбершопа" loading="lazy"></div>
+      <div>
+        <p class="eyebrow">Как найти</p>
+        <h2>Немига, 12</h2>
+        <dl>
+          <dt>Метро</dt><dd>2 минуты от «Немиги», выход к ТЦ</dd>
+          <dt>Часы</dt><dd>Ежедневно 10:00–22:00</dd>
+          <dt>Парковка</dt><dd>Во дворе, бесплатно 30 минут</dd>
+          <dt>Телефон</dt><dd><a href="tel:+375290000000">+375 29 000-00-00</a></dd>
+          <dt>Оплата</dt><dd>Карта, наличные, ЕРИП</dd>
+        </dl>
+      </div>
     </div>
   </section>
 </main>
 
-<script src="../../js/demo-frame.js?v=3"></script>
+<script src="../../vendor/gsap.min.js"></script>
+<script src="../../vendor/ScrollTrigger.min.js"></script>
+<script src="../../vendor/lenis.min.js"></script>
+<script src="../../js/demo-frame.js?v=4"></script>
+<script src="../../js/demo-motion.js?v=1"></script>
 <script>
 const SERVICES = [
-  { id: 'cut', name: 'Мужская стрижка', about: 'Машинка и ножницы, мытьё, укладка', min: 60, price: 40 },
-  { id: 'fade', name: 'Фейд', about: 'Плавный переход от кожи, чёткий контур', min: 60, price: 45 },
-  { id: 'beard', name: 'Борода', about: 'Форма, контур бритвой, горячее полотенце', min: 30, price: 30 },
-  { id: 'combo', name: 'Стрижка и борода', about: 'Полный образ за один визит', min: 90, price: 65 },
-  { id: 'shave', name: 'Королевское бритьё', about: 'Опасная бритва и горячие полотенца', min: 30, price: 40 },
-  { id: 'kid', name: 'Детская стрижка', about: 'Для мальчиков до 12 лет', min: 30, price: 28 },
+  { id: 'cut', name: 'Мужская стрижка', about: 'машинка и ножницы, мытьё, укладка', min: 60, price: [45, 55] },
+  { id: 'fade', name: 'Фейд', about: 'плавный переход от кожи, контур', min: 60, price: [50, 60] },
+  { id: 'beard', name: 'Борода', about: 'форма, контур бритвой, масло', min: 30, price: [35, 40] },
+  { id: 'combo', name: 'Стрижка и борода', about: 'полный образ за один визит', min: 90, price: [75, 90] },
+  { id: 'shave', name: 'Королевское бритьё', about: 'опасная бритва и горячие полотенца', min: 30, price: [45, 45] },
+  { id: 'kid', name: 'Детская стрижка', about: 'для мальчиков до 12 лет', min: 30, price: [35, 40] },
 ];
 const MASTERS = [
-  { id: 'ilya', name: 'Илья', role: 'старший мастер', about: 'Фейды и сложные переходы. 9 лет в профессии.', tag: 'Фейды' },
-  { id: 'artem', name: 'Артём', role: 'мастер по бороде', about: 'Борода, бритьё и чёткий контур.', tag: 'Борода' },
-  { id: 'max', name: 'Максим', role: 'мастер', about: 'Классика и ножницы. Любит длинные стрижки.', tag: 'Классика' },
+  { id: 'ilya', name: 'Илья', gen: 'Ильи', dat: 'Илье', level: 1, role: 'топ-барбер · за креслом с 2014', photo: 'master-portrait-scissors', quote: 'Фейд — это геометрия. Смотрю, как растут волосы, и под это строю переход.' },
+  { id: 'max', name: 'Максим', gen: 'Максима', dat: 'Максиму', level: 0, role: 'барбер · 4 года в профессии', photo: 'master-portrait-apron', quote: 'Люблю, когда человек уходит и сразу фотографирует себя в зеркале лифта.' },
+  { id: 'nik', name: 'Николай', gen: 'Николая', dat: 'Николаю', level: 1, role: 'топ-барбер · стаж 25 лет', photo: 'master-senior-at-work', quote: 'Классика ножницами и опасная бритва. Стригу отцов и уже их сыновей.' },
 ];
-const OPEN = 10 * 60, CLOSE = 21 * 60, STEP = 30;
+const OPEN = 10 * 60, CLOSE = 22 * 60, STEP = 30;
 const CLIENTS = ['Денис', 'Олег', 'Павел', 'Игорь', 'Кирилл', 'Антон', 'Сергей', 'Никита'];
 const $ = s => document.querySelector(s);
 const hhmm = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
 const durText = m => m < 60 ? `${m} мин` : m % 60 ? `${Math.floor(m / 60)} ч ${m % 60} мин` : `${m / 60} ч`;
-const WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
-const MON = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+const WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'], MON = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 const dayKey = d => d.toISOString().slice(0, 10);
 const dayLabel = d => `${WD[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`;
+const priceFor = (s, m) => s.price[m && m !== 'any' ? m.level : 0];
+
+/* видео на первом экране и в карточке бритья */
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData) return;
+  const put = (box, src, poster) => {
+    const v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true;
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+    v.style.cssText = 'opacity:0;transition:opacity .8s';
+    v.src = src; box.prepend(v);
+    v.addEventListener('playing', () => { v.style.opacity = '1'; setTimeout(() => poster?.remove(), 900); }, { once: true });
+    return v;
+  };
+  const tall = matchMedia('(max-aspect-ratio: 1/1)').matches;
+  put($('.hero__media'), tall ? 'img/hero-m.mp4' : 'img/hero.mp4', $('#heroPoster')).play().catch(() => {});
+  const card = $('#shaveCard');
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { put(card, 'img/shave.mp4', card.querySelector('img')).play().catch(() => {}); o.disconnect(); } }, { rootMargin: '200px' }).observe(card);
+})();
+
+const news = ['Открыли третье кресло — окон стало больше', '«Папа + сын» — 80 BYN', 'Каждая шестая стрижка −50%', 'Горячее полотенце +5 BYN', 'Сертификаты от 50 BYN'];
+$('#ticker').innerHTML = [...news, ...news].map(t => `<span>${t}</span>`).join('');
+
+/* цены */
+SERVICES.forEach(s => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = '<td></td><td></td><td></td>';
+  tr.children[0].innerHTML = `<span></span><small></small>`;
+  tr.children[0].querySelector('span').textContent = s.name;
+  tr.children[0].querySelector('small').textContent = `${s.about} · ${durText(s.min)}`;
+  tr.children[1].textContent = s.price[0] + ' BYN';
+  tr.children[2].textContent = s.price[1] + ' BYN';
+  $('#priceRows').append(tr);
+});
+
+/* мастера */
+const state = { step: 0, svc: null, master: null, day: null, time: null, who: null, presetMaster: false };
+MASTERS.forEach(m => {
+  const el = document.createElement('article'); el.className = 'master rise';
+  el.innerHTML = '<div class="master__photo"><img loading="lazy"></div><div class="master__body"><h3></h3><span class="role"></span><q></q><a class="btn btn--line" href="#book"></a></div>';
+  const img = el.querySelector('img'); img.src = `img/${m.photo}.jpg`; img.alt = `Мастер ${m.name}`;
+  el.querySelector('h3').textContent = m.name;
+  el.querySelector('.role').textContent = m.role;
+  el.querySelector('q').textContent = m.quote;
+  const a = el.querySelector('a'); a.textContent = `Записаться к ${m.dat}`;
+  a.addEventListener('click', () => { Object.assign(state, { step: 0, svc: null, master: m, presetMaster: true, day: null, time: null }); render(); });
+  $('#teamList').append(el);
+});
 
 /* занятость — одна для слотов и для расписания мастера, поэтому они всегда совпадают */
 const hash = s => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; };
-const busy = {}; // `${master}|${day}` → Map(startMin → client)
+const busy = {};
 function busyOf(master, day) {
   const k = master + '|' + day;
   if (!busy[k]) {
@@ -227,40 +463,21 @@ function busyOf(master, day) {
 const nowMin = () => { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); };
 function freeFor(master, day, start, dur, isToday) {
   if (start + dur > CLOSE) return false;
-  if (isToday && start < nowMin() + 30) return false; // запись не раньше чем через 30 минут
+  if (isToday && start < nowMin() + 30) return false;
   const b = busyOf(master, day);
   for (let m = start; m < start + dur; m += STEP) if (b.has(m)) return false;
   return true;
 }
 
-/* цены и мастера */
-SERVICES.forEach(s => {
-  const li = document.createElement('li');
-  li.innerHTML = '<b></b><em></em><strong></strong><small></small>';
-  li.querySelector('b').textContent = s.name; li.querySelector('small').textContent = s.about;
-  li.querySelector('em').textContent = durText(s.min); li.querySelector('strong').textContent = s.price + ' BYN';
-  $('#priceList').append(li);
-});
-MASTERS.forEach(m => {
-  const el = document.createElement('article'); el.className = 'master';
-  el.innerHTML = '<div class="master__ava"></div><h3></h3><p></p><span class="tag"></span>';
-  el.querySelector('.master__ava').textContent = m.name[0];
-  el.querySelector('h3').textContent = m.name;
-  el.querySelector('p').textContent = `${m.role[0].toUpperCase() + m.role.slice(1)}. ${m.about}`;
-  el.querySelector('.tag').textContent = m.tag;
-  $('#teamList').append(el);
-});
-
 /* мастер записи */
-const state = { step: 0, svc: null, master: null, day: null, time: null, who: null };
 const days = [...Array(7)].map((_, i) => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + i); return d; });
 const stage = $('#stage');
-const btn = (cls, html, on) => { const b = document.createElement('button'); b.type = 'button'; b.className = cls; b.innerHTML = html; b.addEventListener('click', on); return b; };
+const mkBtn = (cls, html, on) => { const b = document.createElement('button'); b.type = 'button'; b.className = cls; b.innerHTML = html; b.addEventListener('click', on); return b; };
 const h3 = t => { const h = document.createElement('h3'); h.textContent = t; return h; };
 const navRow = (back, next, nextLabel = 'Дальше', disabled = false) => {
-  const n = document.createElement('div'); n.className = 'nav';
-  if (back) n.append(btn('btn btn--ghost', 'Назад', back));
-  if (next) { const b = btn('btn', nextLabel, next); b.disabled = disabled; if (disabled) b.style.opacity = '.5'; n.append(b); }
+  const n = document.createElement('div'); n.className = 'nav-row';
+  if (back) n.append(mkBtn('btn btn--ghost', 'Назад', back));
+  if (next) { const b = mkBtn('btn', nextLabel, next); b.disabled = disabled; if (disabled) b.style.opacity = '.5'; n.append(b); }
   return n;
 };
 function syncSteps() {
@@ -272,11 +489,13 @@ function syncSteps() {
 function render() {
   syncSteps(); stage.innerHTML = '';
   if (state.step === 0) {
-    stage.append(h3('Что делаем'));
+    stage.append(h3(state.presetMaster ? `Что делаем у ${state.master.gen}` : 'Что делаем'));
     const g = document.createElement('div'); g.className = 'opts';
     SERVICES.forEach(s => {
-      const b = btn('opt', `<b></b><small></small>`, () => { state.svc = s; state.time = null; state.step = 1; render(); });
-      b.querySelector('b').textContent = s.name; b.querySelector('small').textContent = `${durText(s.min)} · ${s.price} BYN`;
+      const b = mkBtn('opt', '<span><b></b><small></small></span>', () => { state.svc = s; state.time = null; state.step = state.presetMaster ? 2 : 1; render(); });
+      b.querySelector('b').textContent = s.name;
+      const p = state.presetMaster ? priceFor(s, state.master) : s.price[0];
+      b.querySelector('small').textContent = `${durText(s.min)} · ${state.presetMaster ? '' : 'от '}${p} BYN`;
       b.setAttribute('aria-pressed', state.svc === s); g.append(b);
     });
     stage.append(g);
@@ -285,9 +504,8 @@ function render() {
     stage.append(h3('К кому'));
     const g = document.createElement('div'); g.className = 'opts';
     [...MASTERS, 'any'].forEach(m => {
-      const b = btn('opt', '<b></b><small></small>', () => { state.master = m; state.time = null; state.step = 2; render(); });
-      b.querySelector('b').textContent = m === 'any' ? 'Любой свободный' : m.name;
-      b.querySelector('small').textContent = m === 'any' ? 'покажем все свободные окна' : m.role;
+      const b = mkBtn('opt', m === 'any' ? '<span><b>Любой свободный</b><small>покажем все окна</small></span>' : '<img alt=""><span><b></b><small></small></span>', () => { state.master = m; state.time = null; state.step = 2; render(); });
+      if (m !== 'any') { b.querySelector('img').src = `img/${m.photo}.jpg`; b.querySelector('b').textContent = m.name; b.querySelector('small').textContent = `${m.level ? 'топ-барбер' : 'барбер'} · ${priceFor(state.svc, m)} BYN`; }
       b.setAttribute('aria-pressed', state.master === m); g.append(b);
     });
     stage.append(g, navRow(() => { state.step = 0; render(); }));
@@ -300,7 +518,7 @@ function render() {
     if (!state.day || !dayFree(state.day, days.indexOf(state.day))) state.day = days.find(dayFree);
     const dr = document.createElement('div'); dr.className = 'days';
     days.forEach((d, i) => {
-      const b = btn('day', `<small>${i === 0 ? 'сегодня' : i === 1 ? 'завтра' : WD[d.getDay()]}</small><b>${d.getDate()}</b>`, () => { state.day = d; state.time = null; render(); });
+      const b = mkBtn('day', `<small>${i === 0 ? 'сегодня' : i === 1 ? 'завтра' : WD[d.getDay()]}</small><b>${d.getDate()}</b>`, () => { state.day = d; state.time = null; render(); });
       b.setAttribute('aria-pressed', d === state.day); b.disabled = !dayFree(d, i);
       b.setAttribute('aria-label', dayLabel(d)); dr.append(b);
     });
@@ -309,25 +527,25 @@ function render() {
     const isToday = state.day === days[0]; let free = 0;
     for (let m = OPEN; m + state.svc.min <= CLOSE; m += STEP) {
       const who = freeAt(state.day, m, isToday);
-      const b = btn('time', hhmm(m), () => { state.time = m; state.who = who; render(); });
+      const b = mkBtn('time', hhmm(m), () => { state.time = m; state.who = who; render(); });
       b.disabled = !who; if (who) free++;
       b.setAttribute('aria-pressed', state.time === m); tg.append(b);
     }
     const hint = document.createElement('p'); hint.className = 'hint';
-    hint.textContent = `Свободно ${free} ${free % 10 === 1 && free % 100 !== 11 ? 'окно' : [2, 3, 4].includes(free % 10) && ![12, 13, 14].includes(free % 100) ? 'окна' : 'окон'}. ${state.svc.name} занимает ${durText(state.svc.min)}.`;
-    stage.append(tg, hint, navRow(() => { state.step = 1; render(); }, () => { state.step = 3; render(); }, 'Дальше', state.time == null));
+    hint.textContent = `Свободно ${free} ${free % 10 === 1 && free % 100 !== 11 ? 'окно' : [2, 3, 4].includes(free % 10) && ![12, 13, 14].includes(free % 100) ? 'окна' : 'окон'}. ${state.svc.name} — ${durText(state.svc.min)}.`;
+    stage.append(tg, hint, navRow(() => { state.step = state.presetMaster ? 0 : 1; render(); }, () => { state.step = 3; render(); }, 'Дальше', state.time == null));
   }
   if (state.step === 3) {
     stage.append(h3('Контакты'));
     const sum = document.createElement('div'); sum.className = 'summary';
-    [`${state.svc.name}, ${state.svc.price} BYN`, `Мастер: ${state.who.name}`, `${dayLabel(state.day)}, ${hhmm(state.time)}–${hhmm(state.time + state.svc.min)}`].forEach(t => { const p = document.createElement('p'); p.textContent = t; sum.append(p); });
+    [`${state.svc.name}, ${priceFor(state.svc, state.who)} BYN`, `Мастер: ${state.who.name}`, `${dayLabel(state.day)}, ${hhmm(state.time)}–${hhmm(state.time + state.svc.min)}`].forEach(t => { const p = document.createElement('p'); p.textContent = t; sum.append(p); });
     const f = document.createElement('form'); f.noValidate = true;
     f.innerHTML = `<label class="field">Имя<input name="name" autocomplete="given-name" maxlength="30"></label>
       <label class="field">Телефон или Telegram<input name="contact" autocomplete="tel" placeholder="+375 29 123-45-67" maxlength="40"></label>
       <p class="err" role="alert"></p>`;
     f.append(navRow(() => { state.step = 2; render(); }, null));
     const sub = document.createElement('button'); sub.className = 'btn'; sub.type = 'submit'; sub.textContent = 'Записаться';
-    f.querySelector('.nav').append(sub);
+    f.querySelector('.nav-row').append(sub);
     f.addEventListener('submit', e => {
       e.preventDefault();
       const c = f.contact.value.trim(), digits = c.replace(/\D/g, '');
@@ -341,30 +559,38 @@ function render() {
 function done(name, contact) {
   const { svc, who, day, time } = state;
   const b = busyOf(who.id, dayKey(day));
-  for (let m = time; m < time + svc.min; m += STEP) b.set(m, null); // окно теперь занято
+  for (let m = time; m < time + svc.min; m += STEP) b.set(m, null);
   b.set(time, name + ' · новая');
   state.step = 4; syncSteps(); [...$('#steps').children].forEach(li => li.className = 'done');
   stage.innerHTML = '';
   const ok = document.createElement('div'); ok.className = 'ok';
   ok.append(h3('Вы записаны'));
-  [`${svc.name} у мастера ${who.name}, ${dayLabel(day)} в ${hhmm(time)}.`, 'Накануне в 19:00 пришлём напоминание. Если планы изменятся — просто ответьте на него.'].forEach(t => { const p = document.createElement('p'); p.textContent = t; ok.append(p); });
-  ok.append(navRow(null, () => { Object.assign(state, { step: 0, svc: null, master: null, day: null, time: null }); render(); }, 'Записать ещё'));
+  [`${svc.name} у ${who.gen}, ${dayLabel(day)} в ${hhmm(time)}. ${priceFor(svc, who)} BYN.`, 'Накануне в 19:00 пришлём напоминание. Если планы изменятся — просто ответьте на него.'].forEach(t => { const p = document.createElement('p'); p.textContent = t; ok.append(p); });
+  ok.append(navRow(null, () => { Object.assign(state, { step: 0, svc: null, master: null, presetMaster: false, day: null, time: null }); render(); }, 'Записать ещё'));
   stage.append(ok);
-  // расписание мастера на этот день — из тех же данных, что и слоты
-  // соседние получасовые блоки одного клиента — одна запись «с–по»
   const blocks = [...b.entries()].sort((a, c) => a[0] - c[0]), sched = [];
   for (const [m, c] of blocks) {
     const last = sched[sched.length - 1];
     if (last && last.end === m && (c === null || c === last.who)) { last.end = m + STEP; continue; }
     sched.push({ start: m, end: m + STEP, who: c });
   }
-  const lines = sched.map(x => `${hhmm(x.start)}–${hhmm(x.end)} — ${x.who}`);
   zsOwner('Чуб · запись', [
     [`Новая запись: ${svc.name}`, [`${dayLabel(day)}, ${hhmm(time)}–${hhmm(time + svc.min)}`, `Мастер: ${who.name}`, `${name}, ${contact}`]],
-    [`Расписание: ${who.name}, ${dayLabel(day)}`, lines],
+    [`Расписание: ${who.name}, ${dayLabel(day)}`, sched.map(x => `${hhmm(x.start)}–${hhmm(x.end)} — ${x.who}`)],
   ]);
 }
 render();
+
+/* сертификат */
+$('#giftForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target, d = f.phone.value.replace(/\D/g, '');
+  if (d.length < 9 || d.length > 15) { $('#giftErr').textContent = 'Укажите телефон — пришлём сертификат и реквизиты для оплаты.'; f.phone.focus(); return; }
+  $('#giftErr').textContent = '';
+  const sum = document.querySelector('input[name=gift]:checked').value;
+  f.innerHTML = `<p style="font-weight:700">Готово! Сертификат на ${sum} BYN придёт в Telegram после оплаты.</p>`;
+  zsOwner('Чуб · сертификаты', [[`Заказ сертификата на ${sum} BYN`, [`Телефон: ${d.replace(/^375/, '+375 ')}`, 'Отправить ссылку на оплату через ЕРИП']]]);
+});
 </script>
 </body>
 </html>
