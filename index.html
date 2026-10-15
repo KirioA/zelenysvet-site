@@ -17,7 +17,7 @@
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=7">
+<link rel="stylesheet" href="css/style.css?v=8">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -28,6 +28,7 @@
     <a class="logo" href="#top" aria-label="Зелёный свет — на главную"><i></i><b>Зелёный свет</b></a>
     <nav class="nav" aria-label="Разделы">
       <a href="#works">Работы</a>
+      <a href="#identity">Айдентика</a>
       <a href="#demo">Как приходят заявки</a>
       <a href="#price">Цена</a>
       <a href="#steps">Этапы</a>
@@ -41,6 +42,7 @@
 <div class="menu" id="menu" hidden>
   <nav class="menu__nav" aria-label="Меню">
     <a href="#works">Работы</a>
+    <a href="#identity">Айдентика</a>
     <a href="#demo">Как приходят заявки</a>
     <a href="#price">Цена</a>
     <a href="#steps">Этапы</a>
@@ -61,7 +63,7 @@
         <span class="line"><span>Сайты, которые</span></span>
         <span class="line"><span>приводят заявки</span></span>
       </h1>
-      <p class="hero__lead">Делаем сайты и редизайны для малого бизнеса Беларуси. От первого созвона до заявок у вас в Telegram.</p>
+      <p class="hero__lead">Делаем сайты, логотипы и фирменный стиль для малого бизнеса Беларуси. От первого созвона до заявок у вас в Telegram.</p>
       <div class="hero__cta">
         <a class="btn btn--dark" href="#contact">Обсудить сайт</a>
         <a class="btn btn--ghost" href="#price">Посчитать стоимость</a>
@@ -140,6 +142,30 @@
   </div>
 </section>
 
+<section class="section section--pale" id="identity">
+  <div class="wrap">
+    <div class="head">
+      <h2>Айдентика — тоже делаем</h2>
+      <p>Нет логотипа или он устарел? Нарисуем знак, подберём цвета и шрифты, сделаем вывеску, визитки и шаблоны для Instagram. Вместе с сайтом или отдельно.</p>
+    </div>
+    <div class="ids">
+      <a class="id-card" href="brand/" style="--bg:#F7F8F2"><span class="id-card__stage"><img src="img/brand/logo.svg" alt="Логотип «Зелёный свет»"></span><b>Зелёный свет</b><span>наша студия · знак «сигнал»</span></a>
+      <a class="id-card" href="demo/kofe/brand/" style="--bg:#FBF7F2"><span class="id-card__stage"><img src="demo/kofe/brand/logo.svg" alt="Логотип кофейни «Утро»"></span><b>Кофейня «Утро»</b><span>солнце над горизонтом</span></a>
+      <a class="id-card" href="demo/barber/brand/" style="--bg:#16213A"><span class="id-card__stage"><img src="demo/barber/brand/logo-inverse.svg" alt="Логотип барбершопа «Чуб»"></span><b>Барбершоп «Чуб»</b><span>полосатый столб</span></a>
+      <a class="id-card" href="demo/avto/brand/" style="--bg:#ECEDEF"><span class="id-card__stage"><img src="demo/avto/brand/logo.svg" alt="Логотип автосервиса «Ключ 13»"></span><b>Автосервис «Ключ 13»</b><span>ключ на 13</span></a>
+    </div>
+    <div class="id-offer">
+      <ul>
+        <li><b>Логотип</b> основной, для тёмного фона и знак для аватарки</li>
+        <li><b>Цвета и шрифты</b> с кодами для печати и сайта</li>
+        <li><b>Носители</b> вывеска, визитки, стаканы, сертификаты</li>
+        <li><b>Страница бренда</b> со всеми файлами, как у примеров выше</li>
+      </ul>
+      <div class="id-offer__cta"><p class="id-offer__price">от 450 BYN</p><a class="btn btn--dark" href="?service=Айдентика#contact">Хочу айдентику</a></div>
+    </div>
+  </div>
+</section>
+
 <!-- Демо: как заявка с сайта попадает в Telegram. Всё локально, на сервер ничего не уходит -->
 <section class="section section--ink" id="demo">
   <div class="wrap demo">
@@ -197,6 +223,7 @@
         <label class="tick"><input type="checkbox" name="add" data-price="300" data-days="3" data-name="онлайн-запись"><span>Онлайн-запись или бронь <small>+300</small></span></label>
         <label class="tick"><input type="checkbox" name="add" data-price="250" data-days="2" data-name="калькулятор"><span>Калькулятор или квиз <small>+250</small></span></label>
         <label class="tick"><input type="checkbox" name="add" data-price="200" data-days="2" data-name="связка с CRM"><span>Заявки в CRM или таблицу <small>+200</small></span></label>
+        <label class="tick"><input type="checkbox" name="add" data-price="450" data-days="5" data-name="айдентика"><span>Логотип и фирменный стиль <small>+450</small></span></label>
         <label class="tick"><input type="checkbox" name="add" data-price="350" data-days="3" data-name="английская версия"><span>Английская версия <small>+350</small></span></label>
         <label class="tick"><input type="checkbox" name="rush" data-name="срочно"><span>Срочный запуск <small>+30%, быстрее на треть</small></span></label>
       </fieldset>
@@ -234,6 +261,7 @@
     <h2>Вопросы</h2>
     <div class="faq__list">
       <details><summary>У меня уже есть сайт. Поможете?</summary><p>Да. Посмотрим, что работает, а что мешает заявкам, и сделаем редизайн. Тексты и функции, которые нужны, сохраним. Стоит от 70% цены нового сайта.</p></details>
+      <details><summary>У нас нет логотипа. Сделаете?</summary><p>Да. Нарисуем знак и логотип, подберём цвета и шрифты, сделаем вывеску, визитки и шаблоны для соцсетей. Всё соберём на странице бренда со всеми файлами. Можно вместе с сайтом или отдельно, от 450 BYN.</p></details>
       <details><summary>Что нужно от меня?</summary><p>20 минут на созвон, ответы на вопросы и фото, если они есть. Тексты пишем сами. Если есть только Instagram — соберём сайт из него.</p></details>
       <details><summary>Смогу сам менять цены и фото?</summary><p>Да. После запуска покажем, как это делать. Если не хочется разбираться — пришлите правки, внесём сами.</p></details>
       <details><summary>Кто платит за домен и хостинг?</summary><p>Вы — напрямую провайдеру, примерно 100–200 BYN в год. Поможем выбрать и всё подключим. Доступы сразу оформляем на вас.</p></details>
@@ -271,6 +299,7 @@
         <label><input type="radio" name="service" value="Сайт компании"><span>Сайт компании</span></label>
         <label><input type="radio" name="service" value="Каталог"><span>Каталог</span></label>
         <label><input type="radio" name="service" value="Редизайн"><span>Редизайн</span></label>
+        <label><input type="radio" name="service" value="Айдентика"><span>Айдентика</span></label>
         <label><input type="radio" name="service" value="Пока не знаю"><span>Пока не знаю</span></label>
       </fieldset>
       <label class="field">
@@ -301,6 +330,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=5" defer></script>
+<script src="js/main.js?v=6" defer></script>
 </body>
 </html>

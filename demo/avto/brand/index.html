@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Айдентика «Ключ 13» — демо студии «Зелёный свет»</title>
+<meta name="description" content="Логотип, цвета, шрифты и фирменные носители вымышленного бренда «Ключ 13». Пример айдентики от студии «Зелёный свет».">
+<meta name="robots" content="noindex">
+<link rel="icon" href="mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../css/demo-frame.css?v=6">
+<style>
+@font-face { font-family: "Russo One"; src: url(../../../fonts/russo-cyrillic.woff2) format("woff2"); font-weight: 400 700; unicode-range: U+0400-045F; }
+@font-face { font-family: "Russo One"; src: url(../../../fonts/russo-latin.woff2) format("woff2"); font-weight: 400 700; unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: Manrope; src: url(../../../fonts/manrope-cyrillic.woff2) format("woff2"); font-weight: 200 800; unicode-range: U+0400-045F; }
+@font-face { font-family: Manrope; src: url(../../../fonts/manrope-latin.woff2) format("woff2"); font-weight: 200 800; unicode-range: U+0000-00FF, U+2000-206F; }
+:root { --bg: #ECEDEF; --ink: #1B1F24; --acc: #F5C400; --on-acc: #1B1F24; --soft: #FFF3B8; --muted: #545B63; --dark: #121519; --head: "Russo One", sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 Manrope, system-ui, sans-serif; }
+img { display: block; max-width: 100%; }
+h1, h2, h3 { font-family: var(--head); margin: 0; line-height: 1.05; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: clamp(20px, 4vw, 40px); }
+.hero { padding-block: clamp(48px, 8vw, 96px) 48px; }
+.kicker { font-weight: 700; color: var(--muted); }
+.hero h1 { margin-top: 10px; font-size: clamp(40px, 6vw, 76px); }
+.hero p.lead { margin-top: 18px; max-width: 54ch; color: var(--muted); font-size: 19px; }
+.board { display: grid; place-items: center; margin-top: 36px; padding: clamp(40px, 8vw, 90px) 24px; border-radius: 22px; background: #fff; }
+.board img { width: min(100%, 520px); height: auto; }
+section { padding-block: 44px; }
+h2 { font-size: clamp(28px, 3.4vw, 40px); margin-bottom: 20px; }
+.grid { display: grid; gap: 14px; }
+.g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); } .g2 { grid-template-columns: 1fr 1fr; }
+.tile { margin: 0; padding: 18px; border-radius: 18px; background: #fff; }
+.stage { display: grid; place-items: center; min-height: 150px; border-radius: 12px; background: var(--bg); padding: 18px; }
+.stage img { max-height: 70px; width: auto; }
+.stage--dark { background: var(--dark); }
+.tile figcaption { margin-top: 12px; font-size: 15px; display: flex; gap: 14px; flex-wrap: wrap; }
+.tile figcaption a { font-weight: 700; padding: 4px 0; }
+.sw { display: grid; gap: 2px; padding: 0 0 14px; border: 0; border-radius: 18px; background: #fff; text-align: left; font: inherit; color: inherit; cursor: pointer; overflow: hidden; }
+.sw i { display: block; height: 100px; background: var(--c); margin-bottom: 10px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+.sw b, .sw span { padding: 0 14px; } .sw span { font-size: 14px; color: var(--muted); }
+.type { padding: 22px; border-radius: 18px; background: #fff; }
+.type .big { font-family: var(--head); font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; margin-top: 8px; }
+.type small { color: var(--muted); font-weight: 700; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; padding: 22px; border-radius: 18px; background: #fff; }
+.b { display: inline-flex; align-items: center; min-height: 50px; padding: 0 24px; border: 2px solid transparent; font: 700 16px Manrope, sans-serif; text-decoration: none; border-radius:10px;font-weight:800; }
+.b--acc { background: var(--acc); color: var(--on-acc); } .b--ink { background: var(--ink); color: #fff; } .b--line { border-color: var(--ink); color: var(--ink); }
+.app { margin: 0; } .app figcaption { margin-top: 10px; color: var(--muted); font-size: 15px; }
+.card { aspect-ratio: 85 / 55; padding: 18px; border-radius: 14px; background: #fff; display: grid; align-content: space-between; box-shadow: 0 10px 24px rgba(0,0,0,.12); }
+.card--soft { background: var(--soft); } .card--dark { background: var(--dark); color: #fff; }
+.card__logo { height: 34px; width: auto; } .card__big { font-family: var(--head); font-size: 26px; }
+.stamps { display: flex; gap: 6px; } .stamps i { width: 22px; height: 22px; border-radius: 50%; border: 2px dashed var(--muted); display: grid; place-items: center; font-style: normal; font-size: 12px; color: var(--acc); }
+.stamps i.on { border: 0; background: var(--acc); } .stamps i.gift { border-color: var(--acc); }
+.cup { display: grid; justify-items: center; padding: 24px 0; border-radius: 18px; background: #fff; }
+.cup__lid { width: 150px; height: 18px; border-radius: 8px 8px 3px 3px; background: var(--ink); }
+.cup__body { width: 130px; height: 170px; background: #fff; border: 2px solid #E8E2DA; border-top: 0; clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); display: grid; align-items: center; }
+.cup__sleeve { margin: 0 -2px; padding: 14px 0; background: var(--acc); display: grid; justify-items: center; gap: 2px; }
+.cup__sleeve img { width: 42px; } .cup__sleeve b { font-family: var(--head); color: var(--ink); }
+.post { position: relative; aspect-ratio: 1; border-radius: 14px; overflow: hidden; color: #fff; }
+.post > img { width: 100%; height: 100%; object-fit: cover; }
+.post::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.65), transparent 55%); }
+.post__tag { position: absolute; z-index: 1; left: 12px; top: 12px; display: flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--bg); color: var(--ink); font-weight: 700; font-size: 14px; }
+.post__tag img { width: 22px; }
+.post b { position: absolute; z-index: 1; left: 14px; bottom: 14px; font-family: var(--head); font-size: 22px; }
+.sign { aspect-ratio: 4 / 3; border-radius: 14px; background-size: cover; background-position: center; display: grid; place-items: start center; padding-top: 18px; }
+.sign__plate { padding: 16px 22px; border-radius: 10px; background: var(--dark); box-shadow: 0 10px 24px rgba(0,0,0,.4); }
+.sign__plate img { height: 44px; width: auto; } .sign__plate--yellow { background: var(--acc); }
+.order { padding: 18px; border-radius: 6px; background: #fff; box-shadow: 0 10px 24px rgba(0,0,0,.12); font-size: 14px; }
+.order__logo { height: 30px; width: auto; margin-bottom: 12px; } .order b { font-family: var(--head); font-size: 18px; }
+.order ul { list-style: none; margin: 10px 0; padding: 0; border-top: 1px dashed #ccc; }
+.order li { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed #ccc; }
+.order__sum { font-weight: 800; text-align: right; }
+.patch { aspect-ratio: 1; border-radius: 18px; background: #1E2C4A; display: grid; place-content: center; justify-items: center; gap: 8px; color: var(--acc); font-family: var(--head); font-size: 20px; box-shadow: inset 0 0 0 10px #1E2C4A, inset 0 0 0 13px var(--acc); }
+.patch img { width: 90px; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; margin-block: 44px 72px; padding: 28px; border-radius: 22px; background: var(--dark); color: #fff; }
+.cta p { max-width: 46ch; color: rgba(255,255,255,.8); margin-top: 6px; }
+.cta .b--acc { color: var(--on-acc); }
+@media (max-width: 900px) { .g3, .g4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .g3, .g4, .g2 { grid-template-columns: 1fr; } .cta .b { width: 100%; justify-content: center; } }
+</style>
+</head>
+<body data-demo="avto" data-demo-name="«Ключ 13»" data-service="Айдентика" data-root="../../../" data-brand-link="../" data-brand-label="Сайт «Ключ 13»">
+<main>
+  <div class="wrap hero">
+    <p class="kicker">Айдентика · пример студии «Зелёный свет»</p>
+    <h1>«Ключ 13»</h1>
+    <p class="lead">Рожковый ключ на 13 — самый ходовой размер в любом гараже. Сигнальный жёлтый, графит и технический шрифт Russo One.</p>
+    <div class="board"><img src="logo.svg" alt="Логотип «Ключ 13»"></div>
+  </div>
+  <section><div class="wrap">
+    <h2>Логотип</h2>
+    <div class="grid g3">
+      <figure class="tile"><div class="stage"><img src="logo.svg" alt="Основной логотип"></div><figcaption>Основной <a href="logo.svg" download>SVG</a></figcaption></figure>
+      <figure class="tile"><div class="stage stage--dark"><img src="logo-inverse.svg" alt="Логотип на тёмном"></div><figcaption>На тёмном <a href="logo-inverse.svg" download>SVG</a></figcaption></figure>
+      <figure class="tile"><div class="stage"><img src="mark.svg" alt="Знак" style="max-height:110px"></div><figcaption>Знак <a href="mark.svg" download>SVG</a></figcaption></figure>
+    </div>
+  </div></section>
+  <section><div class="wrap">
+    <h2>Цвета</h2>
+    <div class="grid g4"><button class="sw" data-hex="#F5C400" style="--c:#F5C400"><i></i><b>Сигнальный</b><span>#F5C400 · знак, кнопки, разметка</span></button><button class="sw" data-hex="#1B1F24" style="--c:#1B1F24"><i></i><b>Графит</b><span>#1B1F24 · текст, тёмные блоки</span></button><button class="sw" data-hex="#ECEDEF" style="--c:#ECEDEF"><i></i><b>Бетон</b><span>#ECEDEF · фон</span></button><button class="sw" data-hex="#2E8B57" style="--c:#2E8B57"><i></i><b>Зелёный «готово»</b><span>#2E8B57 · статусы ремонта</span></button></div>
+  </div></section>
+  <section><div class="wrap">
+    <h2>Шрифты и кнопки</h2>
+    <div class="grid g2">
+      <div class="type"><small>Russo One — заголовки</small><p class="big">Заголовки и вывески</p></div>
+      <div class="type"><small>Manrope — текст</small><p style="margin-top:8px;font-size:19px">Меню, цены, адрес и всё, что читают глазами, а не узнают с первого взгляда.</p></div>
+    </div>
+    <div class="btns" style="margin-top:14px"><a class="b b--acc" href="#">Основная</a><a class="b b--ink" href="#">Тёмная</a><a class="b b--line" href="#">Второстепенная</a></div>
+  </div></section>
+  <section><div class="wrap">
+    <h2>Носители</h2>
+    <div class="grid g3">
+      <figure class="app"><div class="sign" style="background-image:url(../img/boks-04-mekhanik-pod-mashinoj.jpg)"><div class="sign__plate sign__plate--yellow"><img src="logo.svg" alt=""></div></div><figcaption>Вывеска над боксом</figcaption></figure>
+      <figure class="app"><div class="order"><img src="logo.svg" alt="" class="order__logo"><b>Заказ-наряд №4312</b><p>Skoda Octavia · 5420 TP-7</p><ul><li><span>Колодки передние</span><span>95</span></li><li><span>Стойка стабилизатора</span><span>55</span></li><li><span>Работа</span><span>35</span></li></ul><p class="order__sum">Итого 185 BYN</p></div><figcaption>Заказ-наряд</figcaption></figure>
+      <figure class="app"><div class="patch"><img src="mark.svg" alt=""><b>КЛЮЧ 13</b></div><figcaption>Нашивка на форму</figcaption></figure></div>
+  </div></section>
+  <div class="wrap"><div class="cta"><div><h3 style="font-size:26px">Нужна айдентика для вашего бизнеса?</h3><p>Логотип, цвета, шрифты, вывеска и шаблоны для соцсетей — вместе с сайтом или отдельно.</p></div><a class="b b--acc" href="../../../?service=Айдентика&from=brand-avto#contact">Хочу айдентику</a></div></div>
+</main>
+<script src="../../../js/demo-frame.js?v=6"></script>
+<script>
+document.querySelectorAll('.sw').forEach(b => b.addEventListener('click', async () => { try { await navigator.clipboard.writeText(b.dataset.hex); } catch {} const s = b.querySelector('span'), t = s.textContent; s.textContent = 'Скопировано'; setTimeout(() => { s.textContent = t; }, 1200); }));
+document.querySelectorAll('.btns a').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>

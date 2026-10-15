@@ -2,13 +2,14 @@
 (() => {
   const b = document.body;
   const slug = b.dataset.demo, name = b.dataset.demoName, service = b.dataset.service || 'Сайт компании';
-  const cta = `../../?service=${encodeURIComponent(service)}&from=${encodeURIComponent('demo-' + slug)}#contact`;
+  const root = b.dataset.root || '../../'; // путь до корня сайта: у страниц бренда демо он глубже
+  const cta = `${root}?service=${encodeURIComponent(service)}&from=${encodeURIComponent('demo-' + slug)}#contact`;
 
   const bar = document.createElement('div');
   bar.className = 'zs-bar';
-  bar.innerHTML = `<a class="zs-bar__back" href="../../works/"><span>Все работы</span></a>
-    <p class="zs-bar__label"><i></i><span>Демо-сайт студии «Зелёный свет»</span></p>
-    <a class="zs-bar__cta" href="${cta}">Хочу такой сайт</a>`;
+  bar.innerHTML = `<a class="zs-bar__back" href="${root}works/"><span>Все работы</span></a>
+    <p class="zs-bar__label"><i></i><span>Демо студии «Зелёный свет»</span><a class="zs-bar__brand" href="${b.dataset.brandLink || 'brand/'}">${b.dataset.brandLabel || 'Айдентика'}</a></p>
+    <a class="zs-bar__cta" href="${cta}">Хочу <span>такой </span>сайт</a>`;
   b.prepend(bar);
 
   const foot = document.createElement('footer');

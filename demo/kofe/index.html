@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="image" href="img/hero-video-milk-pour-poster.jpg">
-<link rel="stylesheet" href="../../css/demo-frame.css?v=4">
+<link rel="stylesheet" href="../../css/demo-frame.css?v=6">
 <style>
 @font-face { font-family: Lora; src: url(../../fonts/lora-cyrillic.woff2) format("woff2"); font-weight: 400 700; font-display: swap; unicode-range: U+0400-045F, U+2116; }
 @font-face { font-family: Lora; src: url(../../fonts/lora-latin.woff2) format("woff2"); font-weight: 400 700; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F; }
@@ -215,6 +215,8 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 }
 @media (max-width: 620px) {
   .menu, .pastry { grid-template-columns: 1fr; }
+  .pastry .drink { flex-direction: column; }
+  .pastry .drink__img { width: 100%; aspect-ratio: 16 / 9; }
   .hero__cta .btn { flex: 1 1 100%; }
   .nav .btn { padding: 0 16px; font-size: 15px; }
   .facts { gap: 12px; }
@@ -385,7 +387,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 <script src="../../vendor/gsap.min.js"></script>
 <script src="../../vendor/ScrollTrigger.min.js"></script>
 <script src="../../vendor/lenis.min.js"></script>
-<script src="../../js/demo-frame.js?v=4"></script>
+<script src="../../js/demo-frame.js?v=6"></script>
 <script src="../../js/demo-motion.js?v=1"></script>
 <script>
 const MENU = [

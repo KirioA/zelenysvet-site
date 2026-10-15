@@ -38,3 +38,15 @@
 .words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
 .words .wi { display: inline-block; will-change: transform; }
 .kenburns { transform-origin: 50% 40%; }
+.zs-bar__brand { margin-left: 6px; padding: 7px 12px; border-radius: 999px; background: #E9F5DA; color: #16261B !important; font-weight: 700; white-space: nowrap; }
+.zs-bar__brand:hover { background: #A6D86B; }
+@media (max-width: 640px) { .zs-bar__label { gap: 6px; } .zs-bar__brand { margin-left: 0; padding: 6px 10px; font-size: 13px; } }
+@media (max-width: 400px) { .zs-bar__label i { display: none; } }
+@media (max-width: 480px) {
+  .zs-bar { gap: 8px; padding-inline: 10px; }
+  .zs-bar__back span { display: none; }
+  .zs-bar__back { padding: 0 8px; }
+  .zs-bar__cta { padding: 0 12px; font-size: 13px; }
+  .zs-bar__cta span { display: none; }
+  .zs-bar__brand { font-size: 12px; padding: 6px 9px; }
+}
