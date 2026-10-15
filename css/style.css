@@ -195,7 +195,7 @@ p { margin: 0; }
 .demo__text > p { margin-top: 20px; color: #B9C6BC; max-width: 44ch; }
 .demo__form { margin-top: 36px; display: grid; gap: 22px; max-width: 460px; }
 .demo .field input { background: var(--ink-2); border-color: #3A5242; color: var(--paper); }
-.demo .field input::placeholder { color: #7E907F; }
+.demo .field input::placeholder { color: #A3B3A4; }
 .demo .field span { color: #B9C6BC; }
 
 .route { list-style: none; display: flex; gap: 10px; margin: 32px 0 0; padding: 0; flex-wrap: wrap; }
