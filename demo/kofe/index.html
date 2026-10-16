@@ -6,7 +6,7 @@
 <title>Кофейня «Утро» — демо-сайт студии «Зелёный свет»</title>
 <meta name="description" content="Демо-сайт кофейни: меню с ценами, заказ с собой ко времени, зерно недели и карта гостя. Сделано студией «Зелёный свет».">
 <meta name="robots" content="noindex">
-<link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="brand/mark.svg" type="image/svg+xml">
 <link rel="preload" as="image" href="img/hero-video-milk-pour-poster.jpg">
 <link rel="stylesheet" href="../../css/demo-frame.css?v=6">
 <style>
@@ -43,7 +43,7 @@ a { color: inherit; }
 .hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(27, 18, 12, .82) 0%, rgba(27, 18, 12, .45) 55%, rgba(27, 18, 12, .1) 100%), linear-gradient(0deg, rgba(27, 18, 12, .6), transparent 40%); }
 .nav { position: relative; z-index: 2; display: flex; align-items: center; gap: 28px; padding-block: 20px; }
 .brand { display: flex; align-items: center; gap: 10px; font: 600 28px Lora, serif; text-decoration: none; }
-.brand i { width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 50% 120%, var(--sun) 0 55%, transparent 56%), var(--sun-2); }
+.brand img { width: 36px; height: 36px; padding: 5px; border-radius: 50%; background: #FBF7F2; object-fit: contain; }
 .nav__links { display: flex; gap: 24px; margin-left: auto; font-weight: 600; font-size: 15px; }
 .nav__links a { text-decoration: none; opacity: .9; padding: 8px 0; }
 .nav__links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
@@ -236,7 +236,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
     <img class="kenburns" id="heroPoster" src="img/hero-video-milk-pour-poster.jpg" alt="">
   </div>
   <div class="wrap nav">
-    <a class="brand" href="#"><i></i>Утро</a>
+    <a class="brand" href="#"><img src="brand/mark.svg" alt="" width="36" height="36">Утро</a>
     <nav class="nav__links" aria-label="Разделы"><a href="#menu">Меню</a><a href="#bean">Зерно недели</a><a href="#reviews">Отзывы</a><a href="#place">Как найти</a></nav>
     <a class="btn btn--sun" href="#order">Заказать</a>
   </div>

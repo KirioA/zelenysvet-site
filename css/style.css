@@ -55,7 +55,7 @@ p { margin: 0; }
 
 /* ---------- logo ---------- */
 .logo { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; text-decoration: none; }
-.logo i { width: 22px; height: 22px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 5px var(--pale); }
+.logo img { height: 34px; width: auto; }
 .logo b { font: 500 17px/1 var(--display); letter-spacing: -0.02em; }
 
 /* ---------- header: фон появляется при скролле, чтобы текст не налезал на кнопки ---------- */
@@ -392,7 +392,7 @@ p { margin: 0; }
 .b-stage--row { display: flex; align-items: center; justify-content: center; gap: 20px; }
 .b-stage--row img { max-height: none; }
 .b-space { display: grid; padding: 24px; outline: 1px dashed #9AAA9C; background: repeating-linear-gradient(45deg, rgba(166, 216, 107, .12) 0 6px, transparent 6px 12px); }
-.b-space img { width: 48px; height: 48px; max-height: none; }
+.b-space img { width: auto; height: 60px; max-height: none; }
 .b-stage--busy { background: url(../demo/kofe/img/beans-closeup.jpg) center / cover; }
 .b-swatch { display: grid; gap: 4px; padding: 0 0 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); text-align: left; font: inherit; color: inherit; cursor: pointer; overflow: hidden; }
 .b-swatch i { display: block; height: 110px; background: var(--c); border-bottom: 1px solid var(--line); margin-bottom: 10px; }

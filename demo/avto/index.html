@@ -6,7 +6,7 @@
 <title>Автосервис «Ключ 13» — демо-сайт студии «Зелёный свет»</title>
 <meta name="description" content="Демо-сайт автосервиса: цены до визита, оценка ремонта по фото, запись на приём и статус машины онлайн. Сделано студией «Зелёный свет».">
 <meta name="robots" content="noindex">
-<link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="brand/mark.svg" type="image/svg+xml">
 <link rel="preload" as="image" href="img/video-gajkovert-koleso-poster.jpg">
 <link rel="stylesheet" href="../../css/demo-frame.css?v=6">
 <style>
@@ -40,7 +40,7 @@ a { color: inherit; }
 .hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18, 21, 25, .9) 0%, rgba(18, 21, 25, .6) 50%, rgba(18, 21, 25, .25) 100%), linear-gradient(0deg, rgba(18, 21, 25, .65), transparent 45%); }
 .nav { position: relative; z-index: 2; display: flex; align-items: center; gap: 28px; padding-block: 18px; }
 .brand { display: flex; align-items: center; gap: 10px; font: 400 24px Russo, sans-serif; text-decoration: none; }
-.brand b { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 10px; background: var(--yellow); color: var(--ink); font-weight: 400; font-size: 18px; }
+.brand img { width: auto; height: 42px; }
 .nav__links { display: flex; gap: 24px; margin-left: auto; font-weight: 700; font-size: 15px; }
 .nav__links a { text-decoration: none; padding: 8px 0; opacity: .9; }
 .nav__links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
@@ -236,7 +236,7 @@ section { padding-block: clamp(64px, 9vw, 112px); }
   .services, .team, .reviews, .works, .facts, .guarantee { grid-template-columns: 1fr; }
   .hero__cta .btn { flex: 1 1 100%; }
 }
-@media (max-width: 380px) { .brand { font-size: 19px; gap: 8px; } .brand b { width: 36px; height: 36px; font-size: 15px; } .nav { gap: 12px; } .nav .tel { font-size: 14px; } }
+@media (max-width: 380px) { .brand { font-size: 19px; gap: 8px; } .brand img { height: 36px; } .nav { gap: 12px; } .nav .tel { font-size: 14px; } }
 </style>
 </head>
 <body data-demo="avto" data-demo-name="Автосервис «Ключ 13»" data-service="Сайт компании">
@@ -244,7 +244,7 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 <header class="hero" data-hero>
   <div class="hero__media" aria-hidden="true"><img class="kenburns" id="heroPoster" src="img/video-gajkovert-koleso-poster.jpg" alt=""></div>
   <div class="wrap nav">
-    <a class="brand" href="#"><b>13</b>Ключ 13</a>
+    <a class="brand" href="#"><img src="brand/mark.svg" alt="" width="38" height="42">Ключ 13</a>
     <nav class="nav__links" aria-label="Разделы"><a href="#price">Цены</a><a href="#photo">Оценка по фото</a><a href="#team">Мастера</a><a href="#book">Запись</a></nav>
     <a class="tel" href="tel:+375290000000">+375 29 000-00-00</a>
   </div>
